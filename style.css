@@ -1,0 +1,280 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red:   #da291c;
+  --gold:  #f5c518;
+  --bg:    #f7f5f0;
+  --card:  #ffffff;
+  --text:  #1a1a1a;
+  --muted: #6b7280;
+  --green: #16a34a;
+  --wrong: #dc2626;
+  --radius: 16px;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px 16px 48px;
+}
+
+.app { width: 100%; max-width: 520px; }
+
+/* ── Header ── */
+header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+header h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--red);
+  margin-bottom: 12px;
+}
+.module-nav { display: flex; justify-content: center; gap: 8px; }
+.module-btn {
+  padding: 6px 20px;
+  border: 2px solid var(--red);
+  border-radius: 24px;
+  background: transparent;
+  color: var(--red);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.module-btn.active { background: var(--red); color: #fff; }
+
+/* ── Controls ── */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.direction-toggle { display: flex; border-radius: 8px; overflow: hidden; border: 1.5px solid var(--red); }
+.dir-btn {
+  padding: 6px 16px;
+  border: none;
+  background: transparent;
+  color: var(--red);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  font-size: 0.85rem;
+}
+.dir-btn.active { background: var(--red); color: #fff; }
+
+.set-select { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
+.set-select select {
+  padding: 5px 10px;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* ── Progress ── */
+.progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.progress-bar-wrap {
+  flex: 1;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  background: var(--red);
+  border-radius: 4px;
+  width: 0%;
+  transition: width 0.4s ease;
+}
+#progress-label { font-size: 0.8rem; color: var(--muted); white-space: nowrap; min-width: 48px; text-align: right; }
+
+/* ── Card ── */
+.card {
+  perspective: 1000px;
+  height: 200px;
+  margin-bottom: 24px;
+  cursor: default;
+}
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+  border-radius: var(--radius);
+}
+.card-inner.flipped { transform: rotateY(180deg); }
+
+.card-front, .card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  gap: 8px;
+}
+.card-front {
+  background: var(--card);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+  border: 2px solid transparent;
+}
+.card-back {
+  background: var(--card);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  border: 2px solid transparent;
+  transform: rotateY(180deg);
+}
+.card-back.correct { border-color: var(--green); }
+.card-back.wrong   { border-color: var(--wrong); }
+
+.prompt-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+.prompt {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+}
+.answer {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.note {
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ── Choices ── */
+.choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.choice-btn {
+  padding: 14px 10px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.1s;
+  text-align: center;
+}
+.choice-btn:hover:not(:disabled) {
+  border-color: var(--red);
+  background: #fff5f5;
+  transform: translateY(-1px);
+}
+.choice-btn.correct {
+  border-color: var(--green);
+  background: #f0fdf4;
+  color: var(--green);
+}
+.choice-btn.wrong {
+  border-color: var(--wrong);
+  background: #fef2f2;
+  color: var(--wrong);
+}
+.choice-btn:disabled { cursor: default; }
+
+/* ── Score row ── */
+.score-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.score {
+  font-size: 1rem;
+  font-weight: 700;
+  min-width: 56px;
+  text-align: center;
+}
+.score.correct { color: var(--green); }
+.score.wrong   { color: var(--wrong); }
+
+#restart-btn {
+  background: none;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  padding: 5px 14px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: var(--muted);
+  transition: border-color 0.15s, color 0.15s;
+}
+#restart-btn:hover { border-color: var(--red); color: var(--red); }
+
+/* ── Result overlay ── */
+.result-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.result-overlay.hidden { display: none; }
+.result-box {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 40px 48px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  max-width: 340px;
+  width: 90%;
+}
+.result-box h2 { font-size: 1.5rem; margin-bottom: 12px; color: var(--red); }
+.result-box p  { color: var(--muted); margin-bottom: 24px; font-size: 1rem; }
+#result-restart {
+  padding: 10px 32px;
+  background: var(--red);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+#result-restart:hover { opacity: 0.88; }
+
+/* ── Shake animation for wrong answer ── */
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  40%      { transform: translateX(6px); }
+  60%      { transform: translateX(-4px); }
+  80%      { transform: translateX(4px); }
+}
+.shake { animation: shake 0.35s ease; }

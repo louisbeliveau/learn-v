@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learn Vietnamese — Numbers</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>🇻🇳 Learn Vietnamese</h1>
+      <nav class="module-nav">
+        <button class="module-btn active" data-module="numbers">Numbers</button>
+      </nav>
+    </header>
+
+    <main id="quiz-area">
+      <div class="controls">
+        <div class="direction-toggle">
+          <button id="dir-en-vi" class="dir-btn active">EN → VI</button>
+          <button id="dir-vi-en" class="dir-btn">VI → EN</button>
+        </div>
+        <div class="set-select">
+          <label for="set">Set:</label>
+          <select id="set">
+            <option value="0-10">0 – 10</option>
+            <option value="0-20" selected>0 – 20</option>
+            <option value="0-100">0 – 100</option>
+            <option value="all">All (0–1000)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="progress-row">
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <span id="progress-label">0 / 0</span>
+      </div>
+
+      <div class="card" id="card">
+        <div class="card-inner" id="card-inner">
+          <div class="card-front">
+            <span class="prompt-label" id="prompt-label">What is…</span>
+            <span class="prompt" id="prompt"></span>
+          </div>
+          <div class="card-back" id="card-back">
+            <span class="answer" id="answer-reveal"></span>
+            <span class="note" id="note-reveal"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="choices" id="choices"></div>
+
+      <div class="score-row">
+        <span class="score correct" id="score-correct">✓ 0</span>
+        <span class="score wrong" id="score-wrong">✗ 0</span>
+        <button id="restart-btn" title="Restart">↺ Restart</button>
+      </div>
+
+      <div class="result-overlay hidden" id="result-overlay">
+        <div class="result-box">
+          <h2>Session complete!</h2>
+          <p id="result-summary"></p>
+          <button id="result-restart">Play again</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
