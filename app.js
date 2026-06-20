@@ -34,6 +34,7 @@ const resultOverlay = document.getElementById('result-overlay');
 const resultSummary = document.getElementById('result-summary');
 const resultRestart = document.getElementById('result-restart');
 const setSelect     = document.getElementById('set');
+const delaySelect   = document.getElementById('delay');
 const dirEnVi       = document.getElementById('dir-en-vi');
 const dirViEn       = document.getElementById('dir-vi-en');
 
@@ -180,7 +181,7 @@ function handleChoice(btn) {
 
   updateScore();
   updateProgress();
-  setTimeout(nextCard, 1400);
+  setTimeout(nextCard, +delaySelect.value);
 }
 
 function showResult() {
