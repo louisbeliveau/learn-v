@@ -1,61 +1,23 @@
 'use strict';
 
-// ── Vietnamese number data ────────────────────────────────────────────────────
-// note: pronunciation quirks are stored as hints
-const NUMBERS = [
-  { n: 0,    vi: 'không',          note: 'also means "zero" / "no"' },
-  { n: 1,    vi: 'một',            note: '' },
-  { n: 2,    vi: 'hai',            note: '' },
-  { n: 3,    vi: 'ba',             note: '' },
-  { n: 4,    vi: 'bốn',            note: '' },
-  { n: 5,    vi: 'năm',            note: 'also means "year"' },
-  { n: 6,    vi: 'sáu',            note: '' },
-  { n: 7,    vi: 'bảy',            note: '' },
-  { n: 8,    vi: 'tám',            note: '' },
-  { n: 9,    vi: 'chín',           note: 'also means "ripe"' },
-  { n: 10,   vi: 'mười',           note: '' },
-  { n: 11,   vi: 'mười một',       note: '' },
-  { n: 12,   vi: 'mười hai',       note: '' },
-  { n: 13,   vi: 'mười ba',        note: '' },
-  { n: 14,   vi: 'mười bốn',       note: '' },
-  { n: 15,   vi: 'mười lăm',       note: '5 → "lăm" after mười' },
-  { n: 16,   vi: 'mười sáu',       note: '' },
-  { n: 17,   vi: 'mười bảy',       note: '' },
-  { n: 18,   vi: 'mười tám',       note: '' },
-  { n: 19,   vi: 'mười chín',      note: '' },
-  { n: 20,   vi: 'hai mươi',       note: 'tens use "mươi" (no tone)' },
-  { n: 21,   vi: 'hai mươi mốt',   note: '1 → "mốt" after mươi' },
-  { n: 25,   vi: 'hai mươi lăm',   note: '5 → "lăm" after mươi' },
-  { n: 30,   vi: 'ba mươi',        note: '' },
-  { n: 40,   vi: 'bốn mươi',       note: '' },
-  { n: 50,   vi: 'năm mươi',       note: '' },
-  { n: 60,   vi: 'sáu mươi',       note: '' },
-  { n: 70,   vi: 'bảy mươi',       note: '' },
-  { n: 80,   vi: 'tám mươi',       note: '' },
-  { n: 90,   vi: 'chín mươi',      note: '' },
-  { n: 100,  vi: 'một trăm',       note: '"trăm" = hundred' },
-  { n: 200,  vi: 'hai trăm',       note: '' },
-  { n: 500,  vi: 'năm trăm',       note: '' },
-  { n: 1000, vi: 'một nghìn',      note: '"nghìn" = thousand (Northern); "ngàn" in South' },
-];
-
-// ── Set definitions ───────────────────────────────────────────────────────────
-const SETS = {
-  '0-10':  d => d.n <= 10,
-  '0-20':  d => d.n <= 20,
-  '0-100': d => d.n <= 100,
-  'all':   ()  => true,
-};
+// ── Module registry (data files must be loaded before this script) ────────────
+const MODULES = [NUMBERS_MODULE, GREETINGS_MODULE];
 
 // ── State ─────────────────────────────────────────────────────────────────────
-let queue      = [];
-let current    = null;
-let correct    = 0;
-let wrong      = 0;
-let direction  = 'en-vi';  // 'en-vi' | 'vi-en'
-let answered   = false;
+let moduleIdx = 0;
+let setIdx    = 0;
+let queue     = [];
+let current   = null;
+let correct   = 0;
+let wrong     = 0;
+let direction = 'en-vi';   // 'en-vi' | 'vi-en'
+let answered  = false;
+
+const mod   = () => MODULES[moduleIdx];
+const items = () => mod().sets[setIdx].items;
 
 // ── DOM refs ──────────────────────────────────────────────────────────────────
+const moduleNav     = document.getElementById('module-nav');
 const cardInner     = document.getElementById('card-inner');
 const cardBack      = document.getElementById('card-back');
 const promptEl      = document.getElementById('prompt');
@@ -77,43 +39,74 @@ const dirViEn       = document.getElementById('dir-vi-en');
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 function shuffle(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
+    [a[i], a[j]] = [a[j], a[i]];
   }
-  return arr;
+  return a;
 }
 
-function activeSet() {
-  return NUMBERS.filter(SETS[setSelect.value]);
-}
-
-// Pick 3 wrong options from the full pool (different from correct answer)
 function wrongOptions(correctItem, pool) {
-  const others = pool.filter(d => d.n !== correctItem.n);
-  return shuffle(others).slice(0, 3);
+  return shuffle(pool.filter(d => d.vi !== correctItem.vi)).slice(0, 3);
 }
 
+function setPrompt(text) {
+  promptEl.textContent = text;
+  promptEl.classList.toggle('long', text.length > 12);
+}
+
+// ── Module nav ────────────────────────────────────────────────────────────────
+function buildModuleNav() {
+  moduleNav.innerHTML = '';
+  MODULES.forEach((m, i) => {
+    const btn = document.createElement('button');
+    btn.className   = 'module-btn' + (i === moduleIdx ? ' active' : '');
+    btn.textContent = m.name;
+    btn.addEventListener('click', () => switchModule(i));
+    moduleNav.appendChild(btn);
+  });
+}
+
+function switchModule(i) {
+  moduleIdx = i;
+  setIdx    = mod().defaultSet;
+  buildModuleNav();
+  buildSetSelect();
+  startSession();
+}
+
+// ── Set selector ──────────────────────────────────────────────────────────────
+function buildSetSelect() {
+  setSelect.innerHTML = '';
+  mod().sets.forEach((s, i) => {
+    const opt = document.createElement('option');
+    opt.value       = i;
+    opt.textContent = s.label;
+    opt.selected    = i === setIdx;
+    setSelect.appendChild(opt);
+  });
+}
+
+// ── Progress & score ──────────────────────────────────────────────────────────
 function updateScore() {
   scoreCorrect.textContent = `✓ ${correct}`;
   scoreWrong.textContent   = `✗ ${wrong}`;
 }
 
 function updateProgress() {
-  const total   = correct + wrong + queue.length + (current ? 1 : 0);
-  const done    = correct + wrong;
-  const pct     = total ? (done / total) * 100 : 0;
-  progressBar.style.width   = pct + '%';
+  const total = correct + wrong + queue.length + (current ? 1 : 0);
+  const done  = correct + wrong;
+  progressBar.style.width   = total ? (done / total * 100) + '%' : '0%';
   progressLabel.textContent = `${done} / ${total}`;
 }
 
 // ── Quiz flow ─────────────────────────────────────────────────────────────────
 function startSession() {
-  const pool = activeSet();
-  queue      = shuffle([...pool]);
-  correct    = 0;
-  wrong      = 0;
-  answered   = false;
+  queue    = shuffle(items());
+  correct  = 0;
+  wrong    = 0;
+  answered = false;
   updateScore();
   resultOverlay.classList.add('hidden');
   cardInner.classList.remove('flipped');
@@ -122,45 +115,40 @@ function startSession() {
 }
 
 function nextCard() {
-  if (!queue.length) {
-    showResult();
-    return;
-  }
+  if (!queue.length) { showResult(); return; }
 
   answered = false;
   current  = queue.shift();
 
-  // Reset card to front
   cardInner.classList.remove('flipped');
   cardBack.className = 'card-back';
 
-  const pool = activeSet();
-
   if (direction === 'en-vi') {
-    promptLabel.textContent = 'How do you say…';
-    promptEl.textContent    = current.n;
+    promptLabel.textContent   = 'How do you say…';
+    setPrompt(current.en);
     answerReveal.textContent  = current.vi;
   } else {
-    promptLabel.textContent = 'What number is…';
-    promptEl.textContent    = current.vi;
-    answerReveal.textContent  = current.n;
+    promptLabel.textContent   = 'What does this mean?';
+    setPrompt(current.vi);
+    answerReveal.textContent  = current.en;
   }
   noteReveal.textContent = current.note || '';
 
   updateProgress();
-  buildChoices(pool);
+  buildChoices();
 }
 
-function buildChoices(pool) {
+function buildChoices() {
   choicesEl.innerHTML = '';
+  const pool       = items();
   const distractors = wrongOptions(current, pool);
-  const options     = shuffle([current, ...distractors]);
+  const options    = shuffle([current, ...distractors]);
 
   options.forEach(item => {
     const btn = document.createElement('button');
-    btn.className   = 'choice-btn';
-    btn.textContent = direction === 'en-vi' ? item.vi : item.n;
-    btn.dataset.num = item.n;
+    btn.className     = 'choice-btn';
+    btn.textContent   = direction === 'en-vi' ? item.vi : item.en;
+    btn.dataset.vi    = item.vi;
     btn.addEventListener('click', () => handleChoice(btn));
     choicesEl.appendChild(btn);
   });
@@ -170,17 +158,14 @@ function handleChoice(btn) {
   if (answered) return;
   answered = true;
 
-  const chosen  = Number(btn.dataset.num);
-  const isRight = chosen === current.n;
+  const isRight = btn.dataset.vi === current.vi;
 
-  // Flip card to reveal answer
   cardInner.classList.add('flipped');
   cardBack.classList.add(isRight ? 'correct' : 'wrong');
 
-  // Highlight buttons
   choicesEl.querySelectorAll('.choice-btn').forEach(b => {
     b.disabled = true;
-    if (Number(b.dataset.num) === current.n) b.classList.add('correct');
+    if (b.dataset.vi === current.vi) b.classList.add('correct');
   });
 
   if (isRight) {
@@ -188,23 +173,23 @@ function handleChoice(btn) {
   } else {
     btn.classList.add('wrong');
     wrong++;
-    // Re-add the card to queue so they see it again
-    queue.push(current);
-    // Shake the card
+    queue.push(current);   // re-queue so they see it again
     cardInner.classList.add('shake');
     cardInner.addEventListener('animationend', () => cardInner.classList.remove('shake'), { once: true });
   }
 
   updateScore();
   updateProgress();
-
   setTimeout(nextCard, 1400);
 }
 
 function showResult() {
   const total = correct + wrong;
-  const pct   = total ? Math.round((correct / total) * 100) : 0;
-  let emoji   = pct === 100 ? '🏆' : pct >= 80 ? '🎉' : pct >= 60 ? '👍' : '📚';
+  const pct   = total ? Math.round(correct / total * 100) : 0;
+  let emoji = '📚';
+  if (pct === 100) emoji = '🏆';
+  else if (pct >= 80) emoji = '🎉';
+  else if (pct >= 60) emoji = '👍';
   resultSummary.textContent = `${emoji}  ${correct} correct out of ${total} attempts (${pct}%)`;
   resultOverlay.classList.remove('hidden');
 }
@@ -224,9 +209,15 @@ dirViEn.addEventListener('click', () => {
   startSession();
 });
 
-setSelect.addEventListener('change', startSession);
+setSelect.addEventListener('change', () => {
+  setIdx = +setSelect.value;
+  startSession();
+});
+
 restartBtn.addEventListener('click', startSession);
 resultRestart.addEventListener('click', startSession);
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
+buildModuleNav();
+buildSetSelect();
 startSession();

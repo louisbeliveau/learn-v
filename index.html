@@ -3,16 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Learn Vietnamese — Numbers</title>
+  <title>Learn Vietnamese</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="app">
     <header>
       <h1>🇻🇳 Learn Vietnamese</h1>
-      <nav class="module-nav">
-        <button class="module-btn active" data-module="numbers">Numbers</button>
-      </nav>
+      <nav class="module-nav" id="module-nav"></nav>
     </header>
 
     <main id="quiz-area">
@@ -23,12 +21,7 @@
         </div>
         <div class="set-select">
           <label for="set">Set:</label>
-          <select id="set">
-            <option value="0-10">0 – 10</option>
-            <option value="0-20" selected>0 – 20</option>
-            <option value="0-100">0 – 100</option>
-            <option value="all">All (0–1000)</option>
-          </select>
+          <select id="set"></select>
         </div>
       </div>
 
@@ -70,6 +63,8 @@
     </main>
   </div>
 
+  <script src="data/numbers.js"></script>
+  <script src="data/greetings.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

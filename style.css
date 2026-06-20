@@ -160,6 +160,7 @@ header h1 {
   color: var(--text);
   text-align: center;
 }
+.prompt.long { font-size: 1.3rem; }
 .answer {
   font-size: 2rem;
   font-weight: 700;
