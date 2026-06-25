@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 1 — The Vietnamese Alphabet</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 13pt;
+      color: #111;
+      background: #fff;
+      padding: 2cm 2.5cm;
+      max-width: 21cm;
+      margin: 0 auto;
+    }
+
+    /* --- HEADER --- */
+    .module-header {
+      text-align: center;
+      border-bottom: 3px double #333;
+      padding-bottom: 16px;
+      margin-bottom: 28px;
+    }
+    .module-header .label {
+      font-size: 10pt;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #666;
+    }
+    .module-header h1 {
+      font-size: 24pt;
+      margin: 6px 0 4px;
+    }
+    .module-header p {
+      font-size: 11pt;
+      color: #444;
+      font-style: italic;
+    }
+
+    /* --- SECTIONS --- */
+    h2 {
+      font-size: 14pt;
+      margin: 28px 0 10px;
+      border-left: 4px solid #333;
+      padding-left: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    h3 {
+      font-size: 12pt;
+      margin: 18px 0 8px;
+      font-style: italic;
+    }
+    p { line-height: 1.7; margin-bottom: 10px; }
+
+    /* --- ALPHABET TABLE --- */
+    .alpha-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 20px;
+      font-size: 11.5pt;
+    }
+    .alpha-table th {
+      background: #222;
+      color: #fff;
+      padding: 7px 10px;
+      text-align: left;
+      font-size: 10pt;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .alpha-table td {
+      padding: 6px 10px;
+      border-bottom: 1px solid #ddd;
+      vertical-align: top;
+    }
+    .alpha-table tr:nth-child(even) td { background: #f7f7f7; }
+    .viet-char {
+      font-size: 16pt;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    .sound-hint { color: #444; font-style: italic; }
+    .example-word { color: #222; }
+
+    /* --- TONE TABLE --- */
+    .tone-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 20px;
+      font-size: 11pt;
+    }
+    .tone-table th {
+      background: #444;
+      color: #fff;
+      padding: 7px 10px;
+      text-align: left;
+      font-size: 10pt;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .tone-table td {
+      padding: 6px 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .tone-table tr:nth-child(even) td { background: #f7f7f7; }
+    .mark { font-size: 16pt; font-weight: bold; }
+
+    /* --- TIP BOX --- */
+    .tip-box {
+      border: 1px solid #bbb;
+      background: #fafafa;
+      padding: 12px 16px;
+      margin: 16px 0;
+      border-left: 4px solid #333;
+    }
+    .tip-box strong { display: block; margin-bottom: 4px; font-size: 10pt; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* --- EXERCISES --- */
+    .exercise {
+      margin: 20px 0;
+    }
+    .exercise-title {
+      font-weight: bold;
+      font-size: 11pt;
+      margin-bottom: 10px;
+      text-decoration: underline;
+    }
+
+    /* Matching columns */
+    .match-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 40px;
+      margin: 10px 0 20px;
+    }
+    .match-col { }
+    .match-col h4 {
+      font-size: 10pt;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 4px;
+      margin-bottom: 8px;
+    }
+    .match-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 9px;
+      font-size: 13pt;
+      gap: 10px;
+    }
+    .match-item .num {
+      font-size: 10pt;
+      color: #888;
+      width: 18px;
+      flex-shrink: 0;
+    }
+    .match-item .letter-big { font-size: 18pt; font-weight: bold; width: 32px; }
+    .match-item .blank {
+      flex: 1;
+      border-bottom: 1px solid #aaa;
+      height: 20px;
+    }
+
+    /* Fill-in blanks */
+    .fill-list { list-style: none; padding: 0; }
+    .fill-list li {
+      margin-bottom: 14px;
+      line-height: 2;
+      font-size: 13pt;
+    }
+    .blank-long {
+      display: inline-block;
+      border-bottom: 1px solid #aaa;
+      min-width: 120px;
+      height: 20px;
+      vertical-align: bottom;
+    }
+
+    /* Circle exercise */
+    .circle-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin: 10px 0 20px;
+    }
+    .circle-item {
+      text-align: center;
+      font-size: 18pt;
+      font-weight: bold;
+      border: 1.5px solid #ccc;
+      padding: 10px 4px;
+      border-radius: 6px;
+    }
+    .circle-item .label-small {
+      font-size: 9pt;
+      font-weight: normal;
+      display: block;
+      color: #555;
+    }
+
+    /* Writing practice */
+    .trace-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .trace-char {
+      font-size: 28pt;
+      font-weight: bold;
+      color: #bbb;
+      width: 46px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .trace-boxes {
+      display: flex;
+      gap: 6px;
+    }
+    .trace-box {
+      width: 44px;
+      height: 44px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    /* Answer key */
+    .answer-key {
+      border-top: 2px dashed #bbb;
+      margin-top: 36px;
+      padding-top: 14px;
+    }
+    .answer-key h2 { margin-top: 0; }
+    .answer-key p { font-size: 11pt; color: #333; }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 36px;
+      padding-top: 12px;
+      border-top: 1px solid #ccc;
+      font-size: 9.5pt;
+      color: #888;
+      font-style: italic;
+    }
+
+    /* PRINT */
+    @media print {
+      body { padding: 1.2cm 1.8cm; }
+      .page-break { page-break-before: always; }
+      .answer-key { page-break-before: always; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="module-header">
+  <p class="label">Vietnamese for Beginners</p>
+  <h1>Module 1: The Alphabet</h1>
+  <p>Bảng chữ cái tiếng Việt &nbsp;·&nbsp; Learning the 29 letters &amp; 6 tones</p>
+</div>
+
+<!-- ===== INTRODUCTION ===== -->
+<h2>Introduction</h2>
+<p>
+  Vietnamese uses the <strong>Latin alphabet</strong> (chữ Quốc ngữ), so you will recognise many letters.
+  However, Vietnamese adds <strong>diacritical marks</strong> (dấu) that change both a letter's sound and
+  its tone — making two separate systems to learn: the alphabet (29 letters) and the tones (6 tones).
+</p>
+
+<div class="tip-box">
+  <strong>Key fact</strong>
+  Vietnamese has <strong>29 letters</strong>. The letters F, J, W and Z exist in borrowed words but are
+  not part of the official alphabet. Every syllable in Vietnamese carries exactly one of six tones,
+  marked directly on the vowel.
+</div>
+
+<!-- ===== SECTION 1: THE ALPHABET ===== -->
+<h2>Part 1 — The 29 Letters</h2>
+<p>
+  The table below lists every letter in alphabetical order. The <em>Sound Equivalent</em> column gives
+  the closest English approximation; the <em>Example</em> column shows a Vietnamese word using that letter.
+</p>
+
+<table class="alpha-table">
+  <thead>
+    <tr>
+      <th>Letter</th>
+      <th>Name (how Vietnamese say it)</th>
+      <th>Sound equivalent in English</th>
+      <th>Example word</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="viet-char">A a</td><td>a</td><td class="sound-hint">like "ah" in f<u>a</u>ther</td><td class="example-word">ăn</td><td>to eat</td></tr>
+    <tr><td class="viet-char">Ă ă</td><td>á</td><td class="sound-hint">short "ah", like "u" in b<u>u</u>t</td><td class="example-word">ăn</td><td>to eat</td></tr>
+    <tr><td class="viet-char">Â â</td><td>ớ</td><td class="sound-hint">deep "uh", like "er" in b<u>ir</u>d (no r)</td><td class="example-word">âm</td><td>sound</td></tr>
+    <tr><td class="viet-char">B b</td><td>bê</td><td class="sound-hint">like English "b"</td><td class="example-word">bạn</td><td>friend</td></tr>
+    <tr><td class="viet-char">C c</td><td>xê</td><td class="sound-hint">like "k" (never like "s")</td><td class="example-word">cá</td><td>fish</td></tr>
+    <tr><td class="viet-char">D d</td><td>dê</td><td class="sound-hint">Northern: like "z"; Southern: like "y"</td><td class="example-word">dài</td><td>long</td></tr>
+    <tr><td class="viet-char">Đ đ</td><td>đê</td><td class="sound-hint">like English "d" (harder stop)</td><td class="example-word">đẹp</td><td>beautiful</td></tr>
+    <tr><td class="viet-char">E e</td><td>e</td><td class="sound-hint">like "e" in b<u>e</u>d</td><td class="example-word">em</td><td>younger sibling</td></tr>
+    <tr><td class="viet-char">Ê ê</td><td>ê</td><td class="sound-hint">like "ay" in s<u>ay</u> (tighter, no glide)</td><td class="example-word">êm</td><td>soft, calm</td></tr>
+    <tr><td class="viet-char">G g</td><td>gê</td><td class="sound-hint">like "g" in <u>g</u>o (always hard)</td><td class="example-word">gà</td><td>chicken</td></tr>
+    <tr><td class="viet-char">H h</td><td>hát</td><td class="sound-hint">like English "h"</td><td class="example-word">hoa</td><td>flower</td></tr>
+    <tr><td class="viet-char">I i</td><td>i (ngắn)</td><td class="sound-hint">like "ee" in s<u>ee</u></td><td class="example-word">im</td><td>silent</td></tr>
+    <tr><td class="viet-char">K k</td><td>ca</td><td class="sound-hint">like "k" in s<u>k</u>y</td><td class="example-word">kem</td><td>ice cream</td></tr>
+    <tr><td class="viet-char">L l</td><td>e-lờ</td><td class="sound-hint">like English "l"</td><td class="example-word">lá</td><td>leaf</td></tr>
+    <tr><td class="viet-char">M m</td><td>e-mờ</td><td class="sound-hint">like English "m"</td><td class="example-word">mẹ</td><td>mother</td></tr>
+    <tr><td class="viet-char">N n</td><td>e-nờ</td><td class="sound-hint">like English "n"</td><td class="example-word">nước</td><td>water</td></tr>
+    <tr><td class="viet-char">O o</td><td>o</td><td class="sound-hint">like "aw" in d<u>aw</u>n (rounded)</td><td class="example-word">ong</td><td>bee</td></tr>
+    <tr><td class="viet-char">Ô ô</td><td>ô</td><td class="sound-hint">like "oh" in g<u>o</u> (tighter, no glide)</td><td class="example-word">ổn</td><td>okay / fine</td></tr>
+    <tr><td class="viet-char">Ơ ơ</td><td>ơ</td><td class="sound-hint">like "er" in h<u>er</u> (no r sound)</td><td class="example-word">ơi</td><td>hey! (greeting)</td></tr>
+    <tr><td class="viet-char">P p</td><td>pê</td><td class="sound-hint">like English "p" (rare at word start)</td><td class="example-word">pin</td><td>battery</td></tr>
+    <tr><td class="viet-char">Q q</td><td>qui</td><td class="sound-hint">always "kw" — never alone, always "qu"</td><td class="example-word">quê</td><td>hometown</td></tr>
+    <tr><td class="viet-char">R r</td><td>e-rờ</td><td class="sound-hint">Northern: like "z"; Southern: rolled or like "r"</td><td class="example-word">rau</td><td>vegetables</td></tr>
+    <tr><td class="viet-char">S s</td><td>ét-sì</td><td class="sound-hint">like "sh" in Northern; "s" in Southern</td><td class="example-word">sách</td><td>book</td></tr>
+    <tr><td class="viet-char">T t</td><td>tê</td><td class="sound-hint">like "t" but unaspirated (no puff of air)</td><td class="example-word">tôi</td><td>I / me</td></tr>
+    <tr><td class="viet-char">U u</td><td>u</td><td class="sound-hint">like "oo" in f<u>oo</u>d</td><td class="example-word">uống</td><td>to drink</td></tr>
+    <tr><td class="viet-char">Ư ư</td><td>ư</td><td class="sound-hint">like "uh" said with rounded lips</td><td class="example-word">ước</td><td>to wish</td></tr>
+    <tr><td class="viet-char">V v</td><td>vê</td><td class="sound-hint">like English "v"</td><td class="example-word">vui</td><td>happy</td></tr>
+    <tr><td class="viet-char">X x</td><td>ích-xì</td><td class="sound-hint">like "s" in <u>s</u>un (not "ks")</td><td class="example-word">xe</td><td>vehicle</td></tr>
+    <tr><td class="viet-char">Y y</td><td>i (dài)</td><td class="sound-hint">like "ee" in s<u>ee</u> (same as i, longer syllable)</td><td class="example-word">yêu</td><td>to love</td></tr>
+  </tbody>
+</table>
+
+<!-- ===== SECTION 2: TONES ===== -->
+<div class="page-break"></div>
+<h2>Part 2 — The 6 Tones</h2>
+<p>
+  Tones are not optional — they change the meaning of a word completely. They are marked with small
+  symbols placed <strong>above or below the main vowel</strong> of a syllable.
+</p>
+
+<table class="tone-table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Mark</th>
+      <th>Description</th>
+      <th>Example</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td><td>Ngang (flat)</td><td class="mark">—</td>
+      <td>Mid level, steady. No mark written.</td>
+      <td class="viet-char">ma</td><td>ghost</td>
+    </tr>
+    <tr>
+      <td>2</td><td>Huyền (falling)</td><td class="mark">à</td>
+      <td>Low falling, slightly breathy.</td>
+      <td class="viet-char">mà</td><td>but / whereas</td>
+    </tr>
+    <tr>
+      <td>3</td><td>Sắc (rising)</td><td class="mark">á</td>
+      <td>High rising, like a surprised question.</td>
+      <td class="viet-char">má</td><td>cheek / mum (South)</td>
+    </tr>
+    <tr>
+      <td>4</td><td>Hỏi (dipping)</td><td class="mark">ả</td>
+      <td>Mid dipping then rising, like a questioning "really?"</td>
+      <td class="viet-char">mả</td><td>tomb / grave</td>
+    </tr>
+    <tr>
+      <td>5</td><td>Ngã (broken rising)</td><td class="mark">ã</td>
+      <td>Rising with a glottal break/creak in the middle.</td>
+      <td class="viet-char">mã</td><td>horse (Sino-Viet.) / code</td>
+    </tr>
+    <tr>
+      <td>6</td><td>Nặng (heavy falling)</td><td class="mark">ạ</td>
+      <td>Low falling, short and heavy, ends abruptly.</td>
+      <td class="viet-char">mạ</td><td>rice seedling</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="tip-box">
+  <strong>Memory trick: the "ma" family</strong>
+  All six tones can be heard on the syllable <em>ma</em>:
+  ma · mà · má · mả · mã · mạ — ghost, but, cheek, tomb, code, seedling.
+  Practise saying these six words in order until the pitch shapes feel natural.
+</div>
+
+<!-- ===== SECTION 3: SPECIAL CONSONANT COMBOS ===== -->
+<h2>Part 3 — Common Consonant Combinations</h2>
+<p>
+  Vietnamese uses several two- and three-letter combinations that represent a single sound.
+  These are not separate alphabet entries, but you will see them constantly.
+</p>
+
+<table class="alpha-table">
+  <thead>
+    <tr>
+      <th>Combo</th>
+      <th>Sound</th>
+      <th>Example</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="viet-char">ch</td><td class="sound-hint">like "ch" in <u>ch</u>ain</td><td class="example-word">chào</td><td>hello</td></tr>
+    <tr><td class="viet-char">gh</td><td class="sound-hint">hard "g" (used before e/ê/i)</td><td class="example-word">ghế</td><td>chair</td></tr>
+    <tr><td class="viet-char">gi</td><td class="sound-hint">like "z" (North) or "y" (South)</td><td class="example-word">gia đình</td><td>family</td></tr>
+    <tr><td class="viet-char">kh</td><td class="sound-hint">like "k" with breath, similar to Scottish "loch"</td><td class="example-word">không</td><td>no / not</td></tr>
+    <tr><td class="viet-char">ng / ngh</td><td class="sound-hint">like "ng" in si<u>ng</u> — can begin a syllable!</td><td class="example-word">người</td><td>person</td></tr>
+    <tr><td class="viet-char">nh</td><td class="sound-hint">like "ny" in ca<u>ny</u>on</td><td class="example-word">nhà</td><td>house</td></tr>
+    <tr><td class="viet-char">ph</td><td class="sound-hint">like "f"</td><td class="example-word">phở</td><td>pho (noodle soup)</td></tr>
+    <tr><td class="viet-char">qu</td><td class="sound-hint">like "kw"</td><td class="example-word">quê</td><td>hometown</td></tr>
+    <tr><td class="viet-char">th</td><td class="sound-hint">like "t" with a puff of air (aspirated)</td><td class="example-word">thích</td><td>to like</td></tr>
+    <tr><td class="viet-char">tr</td><td class="sound-hint">like "ch" (North) or "tr" (South)</td><td class="example-word">trà</td><td>tea</td></tr>
+  </tbody>
+</table>
+
+<!-- ===== EXERCISES ===== -->
+<div class="page-break"></div>
+<h2>Exercises</h2>
+
+<!-- Exercise 1 -->
+<div class="exercise">
+  <p class="exercise-title">Exercise 1 — Match the letter to its English sound equivalent</p>
+  <p>Draw a line (or write the letter) from each Vietnamese letter on the left to its correct sound description on the right.</p>
+
+  <div class="match-grid">
+    <div class="match-col">
+      <h4>Vietnamese letter</h4>
+      <div class="match-item"><span class="num">1.</span><span class="letter-big">Đ</span><span class="blank"></span></div>
+      <div class="match-item"><span class="num">2.</span><span class="letter-big">Ă</span><span class="blank"></span></div>
+      <div class="match-item"><span class="num">3.</span><span class="letter-big">Ph</span><span class="blank"></span></div>
+      <div class="match-item"><span class="num">4.</span><span class="letter-big">Nh</span><span class="blank"></span></div>
+      <div class="match-item"><span class="num">5.</span><span class="letter-big">Ơ</span><span class="blank"></span></div>
+      <div class="match-item"><span class="num">6.</span><span class="letter-big">Ng</span><span class="blank"></span></div>
+      <div class="match-item"><span class="num">7.</span><span class="letter-big">X</span><span class="blank"></span></div>
+      <div class="match-item"><span class="num">8.</span><span class="letter-big">Kh</span><span class="blank"></span></div>
+    </div>
+    <div class="match-col">
+      <h4>Sound description</h4>
+      <div class="match-item"><span class="num">A.</span><span style="flex:1">"s" as in <em>sun</em></span></div>
+      <div class="match-item"><span class="num">B.</span><span style="flex:1">"ny" as in <em>canyon</em></span></div>
+      <div class="match-item"><span class="num">C.</span><span style="flex:1">"ng" as in <em>sing</em></span></div>
+      <div class="match-item"><span class="num">D.</span><span style="flex:1">"f" as in <em>fun</em></span></div>
+      <div class="match-item"><span class="num">E.</span><span style="flex:1">hard "d" stop</span></div>
+      <div class="match-item"><span class="num">F.</span><span style="flex:1">short "uh" (like <em>but</em>)</span></div>
+      <div class="match-item"><span class="num">G.</span><span style="flex:1">"er" without the r</span></div>
+      <div class="match-item"><span class="num">H.</span><span style="flex:1">breathy "k" (like Scottish <em>loch</em>)</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Exercise 2 -->
+<div class="exercise">
+  <p class="exercise-title">Exercise 2 — Name that tone</p>
+  <p>Write the name of the tone mark used in each word (Ngang, Huyền, Sắc, Hỏi, Ngã, or Nặng).</p>
+
+  <ul class="fill-list">
+    <li>1.&nbsp; <strong style="font-size:16pt">bạn</strong> &nbsp;(friend) &nbsp;→ Tone: <span class="blank-long"></span></li>
+    <li>2.&nbsp; <strong style="font-size:16pt">sách</strong> &nbsp;(book) &nbsp;→ Tone: <span class="blank-long"></span></li>
+    <li>3.&nbsp; <strong style="font-size:16pt">mẹ</strong> &nbsp;(mother) &nbsp;→ Tone: <span class="blank-long"></span></li>
+    <li>4.&nbsp; <strong style="font-size:16pt">hỏi</strong> &nbsp;(to ask) &nbsp;→ Tone: <span class="blank-long"></span></li>
+    <li>5.&nbsp; <strong style="font-size:16pt">đẹp</strong> &nbsp;(beautiful) &nbsp;→ Tone: <span class="blank-long"></span></li>
+    <li>6.&nbsp; <strong style="font-size:16pt">ổn</strong> &nbsp;(okay) &nbsp;→ Tone: <span class="blank-long"></span></li>
+    <li>7.&nbsp; <strong style="font-size:16pt">chào</strong> &nbsp;(hello) &nbsp;→ Tone: <span class="blank-long"></span></li>
+    <li>8.&nbsp; <strong style="font-size:16pt">không</strong> &nbsp;(no) &nbsp;→ Tone: <span class="blank-long"></span></li>
+  </ul>
+</div>
+
+<!-- Exercise 3 -->
+<div class="exercise">
+  <p class="exercise-title">Exercise 3 — Circle the odd one out</p>
+  <p>In each row, three letters share the same type (vowels with diacritics, consonant combos, etc.).
+  Circle the letter that does NOT belong.</p>
+
+  <p style="margin-bottom:8px;"><strong>Row A</strong> — Which is NOT a vowel with a diacritic mark?</p>
+  <div class="circle-grid" style="grid-template-columns: repeat(4,1fr); max-width: 340px;">
+    <div class="circle-item">Ă<span class="label-small">ă</span></div>
+    <div class="circle-item">Â<span class="label-small">â</span></div>
+    <div class="circle-item">Đ<span class="label-small">đ</span></div>
+    <div class="circle-item">Ơ<span class="label-small">ơ</span></div>
+  </div>
+
+  <p style="margin-bottom:8px;"><strong>Row B</strong> — Which combination does NOT make an "f"-like sound?</p>
+  <div class="circle-grid" style="grid-template-columns: repeat(4,1fr); max-width: 340px;">
+    <div class="circle-item">Ph<span class="label-small">ph</span></div>
+    <div class="circle-item">Kh<span class="label-small">kh</span></div>
+    <div class="circle-item">Ph<span class="label-small">phở</span></div>
+    <div class="circle-item">Ph<span class="label-small">phố</span></div>
+  </div>
+
+  <p style="margin-bottom:8px;"><strong>Row C</strong> — Which word uses the Sắc (rising /) tone?</p>
+  <div class="circle-grid" style="grid-template-columns: repeat(4,1fr); max-width: 340px;">
+    <div class="circle-item" style="font-size:16pt">mà</div>
+    <div class="circle-item" style="font-size:16pt">má</div>
+    <div class="circle-item" style="font-size:16pt">mạ</div>
+    <div class="circle-item" style="font-size:16pt">mả</div>
+  </div>
+</div>
+
+<!-- Exercise 4 -->
+<div class="exercise">
+  <p class="exercise-title">Exercise 4 — Transliterate: how would you say it?</p>
+  <p>Using the alphabet guide, write the English sound equivalent for each word below, then try to pronounce it.</p>
+
+  <ul class="fill-list">
+    <li>1.&nbsp; <strong style="font-size:16pt">nhà</strong> &nbsp;(house) &nbsp;→ Sounds like: <span class="blank-long" style="min-width:200px"></span></li>
+    <li>2.&nbsp; <strong style="font-size:16pt">không</strong> &nbsp;(no) &nbsp;→ Sounds like: <span class="blank-long" style="min-width:200px"></span></li>
+    <li>3.&nbsp; <strong style="font-size:16pt">phở</strong> &nbsp;(noodle soup) &nbsp;→ Sounds like: <span class="blank-long" style="min-width:200px"></span></li>
+    <li>4.&nbsp; <strong style="font-size:16pt">người</strong> &nbsp;(person) &nbsp;→ Sounds like: <span class="blank-long" style="min-width:200px"></span></li>
+    <li>5.&nbsp; <strong style="font-size:16pt">yêu</strong> &nbsp;(to love) &nbsp;→ Sounds like: <span class="blank-long" style="min-width:200px"></span></li>
+  </ul>
+</div>
+
+<!-- Exercise 5 -->
+<div class="exercise">
+  <p class="exercise-title">Exercise 5 — Writing practice</p>
+  <p>Trace or copy each letter/combination in the boxes provided. Pay attention to the diacritic marks.</p>
+
+  <div class="trace-row">
+    <span class="trace-char">Ă</span>
+    <div class="trace-boxes">
+      <div class="trace-box"></div><div class="trace-box"></div><div class="trace-box"></div>
+      <div class="trace-box"></div><div class="trace-box"></div><div class="trace-box"></div>
+    </div>
+  </div>
+  <div class="trace-row">
+    <span class="trace-char">Đ</span>
+    <div class="trace-boxes">
+      <div class="trace-box"></div><div class="trace-box"></div><div class="trace-box"></div>
+      <div class="trace-box"></div><div class="trace-box"></div><div class="trace-box"></div>
+    </div>
+  </div>
+  <div class="trace-row">
+    <span class="trace-char">Ơ</span>
+    <div class="trace-boxes">
+      <div class="trace-box"></div><div class="trace-box"></div><div class="trace-box"></div>
+      <div class="trace-box"></div><div class="trace-box"></div><div class="trace-box"></div>
+    </div>
+  </div>
+  <div class="trace-row">
+    <span class="trace-char">Ư</span>
+    <div class="trace-boxes">
+      <div class="trace-box"></div><div class="trace-box"></div><div class="trace-box"></div>
+      <div class="trace-box"></div><div class="trace-box"></div><div class="trace-box"></div>
+    </div>
+  </div>
+  <div class="trace-row">
+    <span class="trace-char">Ê</span>
+    <div class="trace-boxes">
+      <div class="trace-box"></div><div class="trace-box"></div><div class="trace-box"></div>
+      <div class="trace-box"></div><div class="trace-box"></div><div class="trace-box"></div>
+    </div>
+  </div>
+  <div class="trace-row">
+    <span class="trace-char">Ô</span>
+    <div class="trace-boxes">
+      <div class="trace-box"></div><div class="trace-box"></div><div class="trace-box"></div>
+      <div class="trace-box"></div><div class="trace-box"></div><div class="trace-box"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ANSWER KEY ===== -->
+<div class="answer-key">
+  <h2>Answer Key</h2>
+
+  <h3>Exercise 1 — Matching</h3>
+  <p>1-E &nbsp;·&nbsp; 2-F &nbsp;·&nbsp; 3-D &nbsp;·&nbsp; 4-B &nbsp;·&nbsp; 5-G &nbsp;·&nbsp; 6-C &nbsp;·&nbsp; 7-A &nbsp;·&nbsp; 8-H</p>
+
+  <h3>Exercise 2 — Name that tone</h3>
+  <p>
+    1. Nặng (ạ) &nbsp;·&nbsp; 2. Sắc (á) &nbsp;·&nbsp; 3. Nặng (ẹ) &nbsp;·&nbsp; 4. Hỏi (ỏ) &nbsp;·&nbsp;
+    5. Nặng (ẹ) &nbsp;·&nbsp; 6. Hỏi (ổ) &nbsp;·&nbsp; 7. Huyền (à) &nbsp;·&nbsp; 8. Ngang (no mark on ô)
+  </p>
+
+  <h3>Exercise 3 — Odd one out</h3>
+  <p>
+    Row A: <strong>Đ</strong> — it is a modified consonant, not a vowel.<br>
+    Row B: <strong>Kh</strong> — it makes a breathy "k/kh" sound, not "f".<br>
+    Row C: <strong>má</strong> — it carries the Sắc (rising) tone mark á.
+  </p>
+
+  <h3>Exercise 4 — Transliteration guide</h3>
+  <p>
+    1. nhà → "nyah" (falling tone) &nbsp;·&nbsp;
+    2. không → "khome" (flat tone, rhymes with "home") &nbsp;·&nbsp;
+    3. phở → "fuh" (dipping tone) &nbsp;·&nbsp;
+    4. người → "nguh-ee" (falling tone) &nbsp;·&nbsp;
+    5. yêu → "yeh-oo" (flat tone)
+  </p>
+</div>
+
+<div class="footer">
+  Module 1 of Vietnamese for Beginners &nbsp;·&nbsp; Bảng chữ cái tiếng Việt &nbsp;·&nbsp; Print-friendly version
+</div>
+
+</body>
+</html>
