@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 2 — Phrases de base / Basic Phrases</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 12.5pt;
+      color: #111;
+      background: #fff;
+      padding: 2cm 2.5cm;
+      max-width: 21cm;
+      margin: 0 auto;
+    }
+
+    /* --- HEADER --- */
+    .module-header {
+      text-align: center;
+      border-bottom: 3px double #333;
+      padding-bottom: 16px;
+      margin-bottom: 28px;
+    }
+    .module-header .label {
+      font-size: 10pt;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #666;
+    }
+    .module-header h1 {
+      font-size: 24pt;
+      margin: 6px 0 4px;
+    }
+    .module-header p {
+      font-size: 11pt;
+      color: #444;
+      font-style: italic;
+    }
+
+    /* --- SECTIONS --- */
+    h2 {
+      font-size: 14pt;
+      margin: 28px 0 10px;
+      border-left: 4px solid #333;
+      padding-left: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    h3 {
+      font-size: 11.5pt;
+      margin: 20px 0 8px;
+      font-style: italic;
+      color: #333;
+    }
+    p { line-height: 1.7; margin-bottom: 10px; }
+
+    /* --- TIP BOX --- */
+    .tip-box {
+      border: 1px solid #bbb;
+      background: #fafafa;
+      padding: 12px 16px;
+      margin: 16px 0;
+      border-left: 4px solid #333;
+    }
+    .tip-box strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 10pt;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* --- PHRASE CARD --- */
+    .phrase-card {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
+    .phrase-card .viet {
+      background: #222;
+      color: #fff;
+      padding: 10px 14px;
+      font-size: 16pt;
+      letter-spacing: 0.5px;
+    }
+    .phrase-card .viet .romanisation {
+      font-size: 10pt;
+      color: #aaa;
+      font-style: italic;
+      font-weight: normal;
+      margin-left: 10px;
+      letter-spacing: 0;
+    }
+    .phrase-card .rows {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+    }
+    .phrase-card .row {
+      display: contents;
+    }
+    .phrase-card .lang-tag {
+      background: #f0f0f0;
+      border-right: 1px solid #ddd;
+      border-bottom: 1px solid #eee;
+      padding: 7px 10px;
+      font-size: 9pt;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #555;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+    .phrase-card .lang-tag:last-of-type { border-bottom: none; }
+    .phrase-card .content {
+      padding: 7px 14px;
+      border-bottom: 1px solid #eee;
+      line-height: 1.5;
+      font-size: 12pt;
+    }
+    .phrase-card .content:last-child { border-bottom: none; }
+    .phrase-card .literal {
+      font-size: 10.5pt;
+      color: #555;
+      font-style: italic;
+    }
+    .phrase-card .content .label-lit {
+      font-size: 9pt;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      display: block;
+      margin-top: 3px;
+    }
+
+    /* --- EXERCISES --- */
+    .exercise { margin: 20px 0 28px; }
+    .exercise-title {
+      font-weight: bold;
+      font-size: 11pt;
+      margin-bottom: 10px;
+      text-decoration: underline;
+    }
+
+    .fill-list { list-style: none; padding: 0; }
+    .fill-list li { margin-bottom: 16px; line-height: 2; font-size: 12.5pt; }
+    .blank-long {
+      display: inline-block;
+      border-bottom: 1px solid #aaa;
+      min-width: 180px;
+      height: 20px;
+      vertical-align: bottom;
+    }
+
+    /* Reorder exercise */
+    .reorder-block {
+      margin-bottom: 20px;
+    }
+    .reorder-block .prompt {
+      font-size: 11pt;
+      margin-bottom: 6px;
+      color: #444;
+    }
+    .word-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .chip {
+      border: 1px solid #aaa;
+      border-radius: 16px;
+      padding: 4px 14px;
+      font-size: 14pt;
+      background: #f9f9f9;
+    }
+    .answer-line {
+      border-bottom: 1px solid #aaa;
+      min-height: 28px;
+      margin-top: 6px;
+      width: 100%;
+    }
+
+    /* Translation direction exercise */
+    .translate-list { list-style: none; padding: 0; }
+    .translate-list li {
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px dashed #ccc;
+    }
+    .translate-list li:last-child { border-bottom: none; }
+    .translate-list .source {
+      font-size: 14pt;
+      margin-bottom: 6px;
+    }
+    .translate-list .write-here {
+      border-bottom: 1px solid #aaa;
+      min-height: 28px;
+      width: 100%;
+      display: block;
+    }
+    .translate-list .hint {
+      font-size: 9.5pt;
+      color: #888;
+      font-style: italic;
+      margin-top: 4px;
+    }
+
+    /* --- ANSWER KEY --- */
+    .answer-key {
+      border-top: 2px dashed #bbb;
+      margin-top: 40px;
+      padding-top: 16px;
+    }
+    .answer-key h2 { margin-top: 0; }
+    .answer-key p, .answer-key li { font-size: 11pt; color: #333; line-height: 1.8; }
+    .answer-key ul { padding-left: 18px; }
+
+    /* --- FOOTER --- */
+    .footer {
+      text-align: center;
+      margin-top: 36px;
+      padding-top: 12px;
+      border-top: 1px solid #ccc;
+      font-size: 9.5pt;
+      color: #888;
+      font-style: italic;
+    }
+
+    /* --- SECTION DIVIDER --- */
+    .section-label {
+      font-size: 10pt;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #888;
+      margin: 24px 0 10px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 4px;
+    }
+
+    /* PRINT */
+    @media print {
+      body { padding: 1.2cm 1.8cm; }
+      .page-break { page-break-before: always; }
+      .answer-key { page-break-before: always; }
+      .phrase-card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="module-header">
+  <p class="label">Vietnamese for Beginners · Tiếng Việt cho người mới học</p>
+  <h1>Module 2 : Phrases de base</h1>
+  <p>Basic Phrases &nbsp;·&nbsp; Traductions littérales en français et en anglais</p>
+</div>
+
+<!-- ===== INTRO ===== -->
+<h2>Introduction</h2>
+<p>
+  Chaque fiche présente une phrase vietnamienne avec sa <strong>traduction naturelle</strong>
+  (ce qu'on dirait en français et en anglais) et sa <strong>traduction littérale</strong>
+  (mot à mot), qui révèle la logique de la langue.
+</p>
+<p>
+  Each card shows a Vietnamese phrase with its <strong>natural translation</strong> and
+  its <strong>literal translation</strong> (word for word), which reveals how Vietnamese
+  structures its sentences differently from European languages.
+</p>
+
+<div class="tip-box">
+  <strong>Note sur les pronoms / A note on pronouns</strong>
+  Vietnamese does not have neutral pronouns like "I" or "you." Instead, speakers use
+  kinship terms based on their age relative to the other person.
+  <strong>Tôi</strong> (I, formal/neutral) · <strong>bạn</strong> (you, friend/peer) ·
+  <strong>anh</strong> (you/he, older male) · <strong>chị</strong> (you/she, older female) ·
+  <strong>em</strong> (I/you, younger person). In the phrases below, <em>tôi / bạn</em>
+  are used for simplicity.
+</div>
+
+<!-- ===== PART 1: GREETINGS ===== -->
+<h2>Partie 1 — Salutations / Greetings</h2>
+
+<div class="phrase-card">
+  <div class="viet">Xin chào! <span class="romanisation">sin chow</span></div>
+  <div class="rows">
+    <div class="row">
+      <div class="lang-tag">FR</div>
+      <div class="content">
+        Bonjour ! / Salut !
+        <span class="label-lit">Littéral : « S'il vous plaît, salutation »</span>
+        <span class="literal">Xin = s'il vous plaît (formule de politesse) · chào = salutation</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lang-tag">EN</div>
+      <div class="content">
+        Hello! / Hi!
+        <span class="label-lit">Literal: "Please, greeting"</span>
+        <span class="literal">Xin = please (polite marker) · chào = greeting/salutation</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="phrase-card">
+  <div class="viet">Bạn khỏe không? <span class="romanisation">ban khweh khome</span></div>
+  <div class="rows">
+    <div class="row">
+      <div class="lang-tag">FR</div>
+      <div class="content">
+        Comment vas-tu ? / Tu vas bien ?
+        <span class="label-lit">Littéral : « Toi en bonne santé pas ? »</span>
+        <span class="literal">Bạn = toi · khỏe = en bonne santé · không = non / pas (marque de question)</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lang-tag">EN</div>
+      <div class="content">
+        How are you?
+        <span class="label-lit">Literal: "You healthy not?"</span>
+        <span class="literal">Bạn = you · khỏe = healthy · không = not / no (question marker)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="phrase-card">
+  <div class="viet">Tôi khỏe, cảm ơn. <span class="romanisation">toy khweh, gam un</span></div>
+  <div class="rows">
+    <div class="row">
+      <div class="lang-tag">FR</div>
+      <div class="content">
+        Je vais bien, merci.
+        <span class="label-lit">Littéral : « Moi en bonne santé, sentiment grâce »</span>
+        <span class="literal">Tôi = moi/je · khỏe = en bonne santé · cảm ơn = remercier (cảm = sentiment, ơn = grâce/faveur)</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lang-tag">EN</div>
+      <div class="content">
+        I am well, thank you.
+        <span class="label-lit">Literal: "I healthy, feeling grace"</span>
+        <span class="literal">Tôi = I · khỏe = healthy · cảm ơn = thank you (cảm = feeling, ơn = grace/favour)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="phrase-card">
+  <div class="viet">Tạm biệt! <span class="romanisation">tam byeht</span></div>
+  <div class="rows">
+    <div class="row">
+      <div class="lang-tag">FR</div>
+      <div class="content">
+        Au revoir !
+        <span class="label-lit">Littéral : « Provisoirement séparé »</span>
+        <span class="literal">Tạm = provisoirement / pour le moment · biệt = séparé / séparation</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lang-tag">EN</div>
+      <div class="content">
+        Goodbye!
+        <span class="label-lit">Literal: "Temporarily parted"</span>
+        <span class="literal">Tạm = temporarily / for now · biệt = parted / separated</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PART 2: INTRODUCTIONS ===== -->
+<div class="page-break"></div>
+<h2>Partie 2 — Se présenter / Introducing Yourself</h2>
+
+<div class="phrase-card">
+  <div class="viet">Tên tôi là Louis. <span class="romanisation">ten toy la Louis</span></div>
+  <div class="rows">
+    <div class="row">
+      <div class="lang-tag">FR</div>
+      <div class="content">
+        Je m'appelle Louis.
+        <span class="label-lit">Littéral : « Nom moi est Louis »</span>
+        <span class="literal">Tên = nom · tôi = moi · là = est (verbe être, invariable) · Louis = Louis</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lang-tag">EN</div>
+      <div class="content">
+        My name is Louis.
+        <span class="label-lit">Literal: "Name I is Louis"</span>
+        <span class="literal">Tên = name · tôi = I/my · là = is (the verb "to be", never conjugated) · Louis = Louis</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="phrase-card">
+  <div class="viet">Bạn tên là gì? <span class="romanisation">ban ten la zee</span></div>
+  <div class="rows">
+    <div class="row">
+      <div class="lang-tag">FR</div>
+      <div class="content">
+        Comment tu t'appelles ?
+        <span class="label-lit">Littéral : « Toi nom est quoi ? »</span>
+        <span class="literal">Bạn = toi · tên = nom · là = est · gì = quoi (marque la question)</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lang-tag">EN</div>
+      <div class="content">
+        What is your name?
+        <span class="label-lit">Literal: "You name is what?"</span>
+        <span class="literal">Bạn = you · tên = name · là = is · gì = what (question word, always at the end)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="phrase-card">
+  <div class="viet">Tôi đến từ Canada. <span class="romanisation">toy den too Canada</span></div>
+  <div class="rows">
+    <div class="row">
+      <div class="lang-tag">FR</div>
+      <div class="content">
+        Je viens du Canada.
+        <span class="label-lit">Littéral : « Moi arrive depuis Canada »</span>
+        <span class="literal">Tôi = moi · đến = arriver / venir · từ = depuis / de · Canada = Canada</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lang-tag">EN</div>
+      <div class="content">
+        I come from Canada.
+        <span class="label-lit">Literal: "I arrive from Canada"</span>
+        <span class="literal">Tôi = I · đến = to arrive / come · từ = from · Canada = Canada</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="phrase-card">
+  <div class="viet">Tôi không nói được tiếng Việt nhiều. <span class="romanisation">toy khome noy duh-uk tyeng vyet nyew</span></div>
+  <div class="rows">
+    <div class="row">
+      <div class="lang-tag">FR</div>
+      <div class="content">
+        Je ne parle pas beaucoup vietnamien.
+        <span class="label-lit">Littéral : « Moi pas parler pouvoir langue Việt beaucoup »</span>
+        <span class="literal">Tôi = moi · không = pas · nói = parler · được = pouvoir (capacité) · tiếng Việt = langue vietnamienne · nhiều = beaucoup</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lang-tag">EN</div>
+      <div class="content">
+        I don't speak much Vietnamese.
+        <span class="label-lit">Literal: "I not speak can Vietnamese-language much"</span>
+        <span class="literal">Tôi = I · không = not · nói = speak · được = can/able to · tiếng Việt = Vietnamese language · nhiều = much/many</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PART 3: DAILY LIFE ===== -->
+<div class="page-break"></div>
+<h2>Partie 3 — Vie quotidienne / Daily Life</h2>
+
+<div class="phrase-card">
+  <div class="viet">Tôi muốn uống cà phê. <span class="romanisation">toy moo-un oo-ong ga feh</span></div>
+  <div class="rows">
+    <div class="row">
+      <div class="lang-tag">FR</div>
+      <div class="content">
+        Je veux boire un café.
+        <span class="label-lit">Littéral : « Moi vouloir boire café »</span>
+        <span class="literal">Tôi = moi · muốn = vouloir · uống = boire · cà phê = café (emprunt au français)</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lang-tag">EN</div>
+      <div class="content">
+        I want to drink coffee.
+        <span class="label-lit">Literal: "I want drink coffee"</span>
+        <span class="literal">Tôi = I · muốn = want · uống = drink · cà phê = coffee (borrowed from French "café")</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="phrase-card">
+  <div class="viet">Cái này bao nhiêu tiền? <span class="romanisation">guy nay bow nyew tyen</span></div>
+  <div class="rows">
+    <div class="row">
+      <div class="lang-tag">FR</div>
+      <div class="content">
+        Combien coûte ceci ?
+        <span class="label-lit">Littéral : « Cette chose là combien argent ? »</span>
+        <span class="literal">Cái = classificateur (chose) · này = ici/ceci · bao nhiêu = combien · tiền = argent/monnaie</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lang-tag">EN</div>
+      <div class="content">
+        How much does this cost?
+        <span class="label-lit">Literal: "This thing here how-much money?"</span>
+        <span class="literal">Cái = classifier (for objects) · này = this/here · bao nhiêu = how much · tiền = money</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="phrase-card">
+  <div class="viet">Nhà vệ sinh ở đâu? <span class="romanisation">nyah veh sin uh dow</span></div>
+  <div class="rows">
+    <div class="row">
+      <div class="lang-tag">FR</div>
+      <div class="content">
+        Où sont les toilettes ?
+        <span class="label-lit">Littéral : « Maison hygiène se trouver où ? »</span>
+        <span class="literal">Nhà = maison · vệ sinh = hygiène · ở = se trouver / être situé · đâu = où</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lang-tag">EN</div>
+      <div class="content">
+        Where is the bathroom?
+        <span class="label-lit">Literal: "House hygiene located where?"</span>
+        <span class="literal">Nhà = house · vệ sinh = hygiene/sanitation · ở = located at · đâu = where</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="phrase-card">
+  <div class="viet">Tôi không hiểu. <span class="romanisation">toy khome hyew</span></div>
+  <div class="rows">
+    <div class="row">
+      <div class="lang-tag">FR</div>
+      <div class="content">
+        Je ne comprends pas.
+        <span class="label-lit">Littéral : « Moi pas comprendre »</span>
+        <span class="literal">Tôi = moi · không = pas / ne…pas · hiểu = comprendre</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lang-tag">EN</div>
+      <div class="content">
+        I don't understand.
+        <span class="label-lit">Literal: "I not understand"</span>
+        <span class="literal">Tôi = I · không = not / don't · hiểu = understand</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="phrase-card">
+  <div class="viet">Bạn có thể nói chậm hơn không? <span class="romanisation">ban goh teh noy chum hun khome</span></div>
+  <div class="rows">
+    <div class="row">
+      <div class="lang-tag">FR</div>
+      <div class="content">
+        Tu peux parler plus lentement ?
+        <span class="label-lit">Littéral : « Toi avoir pouvoir parler lent plus pas ? »</span>
+        <span class="literal">Bạn = toi · có thể = avoir la capacité de / pouvoir · nói = parler · chậm = lent · hơn = comparatif (plus) · không = marque de question</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lang-tag">EN</div>
+      <div class="content">
+        Can you speak more slowly?
+        <span class="label-lit">Literal: "You have ability speak slow more not?"</span>
+        <span class="literal">Bạn = you · có thể = have the ability to / can · nói = speak · chậm = slow · hơn = comparative (more) · không = question marker</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PART 4: FOOD ===== -->
+<div class="page-break"></div>
+<h2>Partie 4 — Nourriture / Food</h2>
+
+<div class="phrase-card">
+  <div class="viet">Cho tôi một tô phở. <span class="romanisation">cho toy mot toh fuh</span></div>
+  <div class="rows">
+    <div class="row">
+      <div class="lang-tag">FR</div>
+      <div class="content">
+        Un bol de pho, s'il vous plaît.
+        <span class="label-lit">Littéral : « Donner moi un bol pho »</span>
+        <span class="literal">Cho = donner / pour · tôi = moi · một = un · tô = bol (grand) · phở = pho (soupe de nouilles)</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lang-tag">EN</div>
+      <div class="content">
+        One bowl of pho for me, please.
+        <span class="label-lit">Literal: "Give me one bowl pho"</span>
+        <span class="literal">Cho = give / for · tôi = me · một = one · tô = large bowl · phở = pho (noodle soup)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="phrase-card">
+  <div class="viet">Món này cay không? <span class="romanisation">mon nay gay khome</span></div>
+  <div class="rows">
+    <div class="row">
+      <div class="lang-tag">FR</div>
+      <div class="content">
+        Ce plat est-il épicé ?
+        <span class="label-lit">Littéral : « Plat ici épicé pas ? »</span>
+        <span class="literal">Món = plat (de nourriture) · này = ici/ce · cay = épicé/piquant · không = marque de question oui/non</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lang-tag">EN</div>
+      <div class="content">
+        Is this dish spicy?
+        <span class="label-lit">Literal: "Dish here spicy not?"</span>
+        <span class="literal">Món = dish/food item · này = this/here · cay = spicy · không = yes/no question marker</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="phrase-card">
+  <div class="viet">Ngon quá! <span class="romanisation">ngon kwah</span></div>
+  <div class="rows">
+    <div class="row">
+      <div class="lang-tag">FR</div>
+      <div class="content">
+        C'est délicieux !
+        <span class="label-lit">Littéral : « Délicieux trop ! »</span>
+        <span class="literal">Ngon = délicieux/bon au goût · quá = trop / vraiment (intensificateur positif)</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lang-tag">EN</div>
+      <div class="content">
+        It's delicious!
+        <span class="label-lit">Literal: "Delicious too-much!"</span>
+        <span class="literal">Ngon = delicious/tasty · quá = too/so/really (positive intensifier)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== EXERCISES ===== -->
+<div class="page-break"></div>
+<h2>Exercices / Exercises</h2>
+
+<!-- Exercise 1 -->
+<div class="exercise">
+  <p class="exercise-title">Exercice 1 — Complétez la traduction littérale / Complete the literal translation</p>
+  <p>Écrivez la traduction littérale mot à mot de chaque phrase. &nbsp;·&nbsp;
+  Write the word-for-word literal translation of each phrase.</p>
+
+  <ul class="fill-list">
+    <li>
+      1. <strong style="font-size:15pt">Xin chào!</strong><br>
+      Littéral / Literal : <span class="blank-long" style="min-width:300px"></span>
+    </li>
+    <li>
+      2. <strong style="font-size:15pt">Tôi khỏe, cảm ơn.</strong><br>
+      Littéral / Literal : <span class="blank-long" style="min-width:300px"></span>
+    </li>
+    <li>
+      3. <strong style="font-size:15pt">Cái này bao nhiêu tiền?</strong><br>
+      Littéral / Literal : <span class="blank-long" style="min-width:300px"></span>
+    </li>
+    <li>
+      4. <strong style="font-size:15pt">Nhà vệ sinh ở đâu?</strong><br>
+      Littéral / Literal : <span class="blank-long" style="min-width:300px"></span>
+    </li>
+    <li>
+      5. <strong style="font-size:15pt">Ngon quá!</strong><br>
+      Littéral / Literal : <span class="blank-long" style="min-width:300px"></span>
+    </li>
+  </ul>
+</div>
+
+<!-- Exercise 2 -->
+<div class="exercise">
+  <p class="exercise-title">Exercice 2 — Remettez les mots dans l'ordre / Put the words in order</p>
+  <p>Réarrangez les mots pour former une phrase correcte. &nbsp;·&nbsp;
+  Rearrange the words to form a correct Vietnamese sentence.</p>
+
+  <div class="reorder-block">
+    <p class="prompt">1. Meaning: "What is your name?" &nbsp;&nbsp; <em>(Use: tên · gì · là · Bạn)</em></p>
+    <div class="word-chips">
+      <span class="chip">gì</span>
+      <span class="chip">tên</span>
+      <span class="chip">Bạn</span>
+      <span class="chip">là</span>
+    </div>
+    <div class="answer-line"></div>
+  </div>
+
+  <div class="reorder-block">
+    <p class="prompt">2. Meaning: "I want to drink coffee." &nbsp;&nbsp; <em>(Use: uống · Tôi · cà phê · muốn)</em></p>
+    <div class="word-chips">
+      <span class="chip">cà phê</span>
+      <span class="chip">muốn</span>
+      <span class="chip">Tôi</span>
+      <span class="chip">uống</span>
+    </div>
+    <div class="answer-line"></div>
+  </div>
+
+  <div class="reorder-block">
+    <p class="prompt">3. Meaning: "I come from Canada." &nbsp;&nbsp; <em>(Use: từ · Tôi · Canada · đến)</em></p>
+    <div class="word-chips">
+      <span class="chip">Canada</span>
+      <span class="chip">từ</span>
+      <span class="chip">đến</span>
+      <span class="chip">Tôi</span>
+    </div>
+    <div class="answer-line"></div>
+  </div>
+</div>
+
+<!-- Exercise 3 -->
+<div class="exercise">
+  <p class="exercise-title">Exercice 3 — Traduisez en vietnamien / Translate into Vietnamese</p>
+  <p>Utilisez les phrases du module pour vous aider. &nbsp;·&nbsp;
+  Use the phrases from the module to help you.</p>
+
+  <ul class="translate-list">
+    <li>
+      <div class="source">🇫🇷 Je ne comprends pas. &nbsp;/&nbsp; 🇬🇧 I don't understand.</div>
+      <span class="write-here"></span>
+      <span class="hint">Indice / Hint: Tôi · không · hiểu</span>
+    </li>
+    <li>
+      <div class="source">🇫🇷 Comment tu t'appelles ? &nbsp;/&nbsp; 🇬🇧 What is your name?</div>
+      <span class="write-here"></span>
+      <span class="hint">Indice / Hint: Bạn · tên · là · gì</span>
+    </li>
+    <li>
+      <div class="source">🇫🇷 Au revoir ! &nbsp;/&nbsp; 🇬🇧 Goodbye!</div>
+      <span class="write-here"></span>
+      <span class="hint">Indice / Hint: deux mots / two words</span>
+    </li>
+    <li>
+      <div class="source">🇫🇷 C'est délicieux ! &nbsp;/&nbsp; 🇬🇧 It's delicious!</div>
+      <span class="write-here"></span>
+      <span class="hint">Indice / Hint: deux mots / two words</span>
+    </li>
+  </ul>
+</div>
+
+<!-- Exercise 4 -->
+<div class="exercise">
+  <p class="exercise-title">Exercice 4 — Vrai ou faux / True or false</p>
+  <p>Indiquez si la traduction littérale est correcte. Écrivez V (vrai) ou F (faux). &nbsp;·&nbsp;
+  Mark whether the literal translation given is correct. Write V (vrai/true) or F (faux/false).</p>
+
+  <ul class="fill-list">
+    <li>_____ &nbsp; 1. <strong>Cảm ơn</strong> signifie littéralement « sentiment + grâce ». / literally means "feeling + grace".</li>
+    <li>_____ &nbsp; 2. <strong>Không</strong> veut toujours dire « non ». / always means "no".</li>
+    <li>_____ &nbsp; 3. <strong>Tạm biệt</strong> signifie littéralement « provisoirement séparé ». / literally means "temporarily parted".</li>
+    <li>_____ &nbsp; 4. <strong>Cà phê</strong> est un mot d'origine anglaise. / is a word of English origin.</li>
+    <li>_____ &nbsp; 5. En vietnamien, les questions oui/non se forment en ajoutant <strong>không</strong> à la fin. / In Vietnamese, yes/no questions are formed by adding <strong>không</strong> at the end.</li>
+  </ul>
+</div>
+
+<!-- ===== ANSWER KEY ===== -->
+<div class="answer-key">
+  <h2>Corrigé / Answer Key</h2>
+
+  <h3>Exercice 1 — Traductions littérales</h3>
+  <ul>
+    <li>1. « S'il vous plaît, salutation » — "Please, greeting"</li>
+    <li>2. « Moi en bonne santé, sentiment grâce » — "I healthy, feeling grace"</li>
+    <li>3. « Cette chose là combien argent ? » — "This thing here how-much money?"</li>
+    <li>4. « Maison hygiène se trouver où ? » — "House hygiene located where?"</li>
+    <li>5. « Délicieux trop ! » — "Delicious too-much!"</li>
+  </ul>
+
+  <h3>Exercice 2 — Remise en ordre</h3>
+  <ul>
+    <li>1. Bạn tên là gì?</li>
+    <li>2. Tôi muốn uống cà phê.</li>
+    <li>3. Tôi đến từ Canada.</li>
+  </ul>
+
+  <h3>Exercice 3 — Traduction en vietnamien</h3>
+  <ul>
+    <li>1. Tôi không hiểu.</li>
+    <li>2. Bạn tên là gì?</li>
+    <li>3. Tạm biệt!</li>
+    <li>4. Ngon quá!</li>
+  </ul>
+
+  <h3>Exercice 4 — Vrai ou faux</h3>
+  <ul>
+    <li>1. <strong>V</strong> — Cảm (sentiment) + ơn (grâce/faveur). Correct.</li>
+    <li>2. <strong>F</strong> — Không peut aussi marquer une question (oui/non) placé en fin de phrase. / It also acts as a yes/no question marker at the end of a sentence.</li>
+    <li>3. <strong>V</strong> — Tạm (provisoirement) + biệt (séparé). Correct.</li>
+    <li>4. <strong>F</strong> — Cà phê vient du français « café ». / It comes from the French word "café".</li>
+    <li>5. <strong>V</strong> — « Bạn khỏe không? » en est un bon exemple. / "Bạn khỏe không?" is a clear example.</li>
+  </ul>
+</div>
+
+<div class="footer">
+  Module 2 de / of Vietnamese for Beginners &nbsp;·&nbsp; Phrases de base / Basic Phrases &nbsp;·&nbsp; Version imprimable / Print-friendly version
+</div>
+
+</body>
+</html>
