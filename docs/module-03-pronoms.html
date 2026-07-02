@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 3 — Pronoms et relations entre personnes</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 12.5pt;
+      color: #111;
+      background: #fff;
+      padding: 2cm 2.5cm;
+      max-width: 21cm;
+      margin: 0 auto;
+    }
+
+    /* --- HEADER --- */
+    .module-header {
+      text-align: center;
+      border-bottom: 3px double #333;
+      padding-bottom: 16px;
+      margin-bottom: 28px;
+    }
+    .module-header .label {
+      font-size: 10pt;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #666;
+    }
+    .module-header h1 { font-size: 24pt; margin: 6px 0 4px; }
+    .module-header p { font-size: 11pt; color: #444; font-style: italic; }
+
+    /* --- SECTION HEADINGS --- */
+    h2 {
+      font-size: 13pt;
+      margin: 30px 0 12px;
+      border-left: 4px solid #333;
+      padding-left: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    h3 {
+      font-size: 11.5pt;
+      margin: 20px 0 8px;
+      font-style: italic;
+      color: #333;
+    }
+    p { line-height: 1.7; margin-bottom: 10px; }
+
+    /* --- TIP BOX --- */
+    .tip-box {
+      border: 1px solid #bbb;
+      background: #fafafa;
+      padding: 12px 16px;
+      margin: 16px 0 24px;
+      border-left: 4px solid #333;
+      font-size: 11.5pt;
+      line-height: 1.7;
+    }
+    .tip-box strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 9.5pt;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* --- PRONOUN TABLE --- */
+    .pron-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 24px;
+      font-size: 11.5pt;
+    }
+    .pron-table th {
+      background: #222;
+      color: #fff;
+      padding: 8px 12px;
+      text-align: left;
+      font-size: 10pt;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .pron-table td {
+      padding: 7px 12px;
+      border-bottom: 1px solid #ddd;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .pron-table tr:nth-child(even) td { background: #f7f7f7; }
+    .pron-table .viet { font-size: 14pt; font-weight: bold; }
+    .pron-table .pair { color: #555; font-style: italic; }
+    .pron-table .age-hint { font-size: 10pt; color: #777; }
+
+    /* --- DIALOGUE CARD --- */
+    .dialogue-card {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
+    .dialogue-card .scenario-bar {
+      background: #444;
+      color: #fff;
+      padding: 6px 14px;
+      font-size: 9.5pt;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .dialogue-card .exchange {
+      padding: 10px 14px 12px;
+    }
+    .line {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+    .line:last-child { margin-bottom: 0; }
+    .speaker {
+      font-size: 9pt;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #888;
+      width: 50px;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+    .line-viet {
+      font-size: 14pt;
+      font-weight: bold;
+      color: #111;
+      flex: 1;
+    }
+    .line-viet .pron { font-size: 9.5pt; color: #aaa; font-style: italic; font-weight: normal; margin-left: 8px; letter-spacing: 0; }
+    .line-fr {
+      font-size: 11pt;
+      color: #333;
+      flex: 1;
+    }
+    .line-lit {
+      font-size: 10pt;
+      color: #666;
+      font-style: italic;
+      flex: 1;
+    }
+    .line-lit .lit-label {
+      font-size: 9pt;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      margin-right: 4px;
+    }
+    .exchange .sub-label {
+      font-size: 9pt;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #bbb;
+      margin-bottom: 2px;
+    }
+    .exchange .block { margin-bottom: 10px; }
+    .exchange .block:last-child { margin-bottom: 0; }
+
+    /* --- EXERCISES --- */
+    h2.exo { margin-top: 36px; }
+    .exercise { margin: 20px 0 28px; }
+    .exercise-title {
+      font-weight: bold;
+      font-size: 11.5pt;
+      margin-bottom: 6px;
+      text-decoration: underline;
+    }
+    .exercise-instr {
+      font-size: 11pt;
+      color: #333;
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+
+    /* fill-in blanks */
+    .fill-list { list-style: none; padding: 0; }
+    .fill-list li {
+      margin-bottom: 18px;
+      line-height: 2;
+      font-size: 12pt;
+    }
+    .fill-list li .num { font-size: 10pt; color: #888; margin-right: 6px; }
+    .blank {
+      display: inline-block;
+      border-bottom: 1px solid #aaa;
+      min-width: 80px;
+      height: 20px;
+      vertical-align: bottom;
+    }
+    .blank-lg {
+      display: inline-block;
+      border-bottom: 1px solid #aaa;
+      min-width: 160px;
+      height: 20px;
+      vertical-align: bottom;
+    }
+
+    /* word bank */
+    .word-bank {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      border: 1px dashed #bbb;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+      border-radius: 3px;
+    }
+    .word-bank .wb-label {
+      font-size: 9.5pt;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      width: 100%;
+      margin-bottom: 4px;
+    }
+    .word-token {
+      border: 1px solid #888;
+      border-radius: 3px;
+      padding: 3px 10px;
+      font-size: 13pt;
+      font-weight: bold;
+      background: #fff;
+    }
+
+    /* matching */
+    .match-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 40px;
+      margin: 10px 0 20px;
+    }
+    .match-col h4 {
+      font-size: 10pt;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+    }
+    .match-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      font-size: 12pt;
+      gap: 10px;
+      line-height: 1.5;
+    }
+    .match-item .num { font-size: 10pt; color: #888; width: 20px; flex-shrink: 0; padding-top: 2px; }
+    .match-item .blank-short {
+      flex: 1;
+      border-bottom: 1px solid #aaa;
+      height: 20px;
+      max-width: 40px;
+    }
+
+    /* true/false */
+    .tf-list { list-style: none; padding: 0; }
+    .tf-list li {
+      margin-bottom: 20px;
+      font-size: 12pt;
+      line-height: 1.7;
+    }
+    .tf-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+    .tf-box {
+      display: inline-block;
+      width: 18px; height: 18px;
+      border: 1.5px solid #aaa;
+      border-radius: 3px;
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+    .correction-line {
+      margin-top: 4px;
+      padding-left: 30px;
+      font-size: 11pt;
+      color: #555;
+    }
+    .correction-line .blank-lg { min-width: 220px; }
+
+    /* write-in response */
+    .write-list { list-style: none; padding: 0; }
+    .write-list li { margin-bottom: 24px; }
+    .write-prompt {
+      font-size: 14pt;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    .write-prompt .pron { font-size: 9.5pt; font-weight: normal; font-style: italic; color: #888; margin-left: 8px; }
+    .write-context { font-size: 10.5pt; font-style: italic; color: #555; margin-bottom: 8px; }
+    .write-line {
+      border-bottom: 1px solid #aaa;
+      height: 28px;
+      margin-bottom: 8px;
+    }
+
+    /* --- ANSWER KEY --- */
+    .answer-key {
+      border-top: 2px dashed #bbb;
+      margin-top: 36px;
+      padding-top: 14px;
+    }
+    .answer-key h2 { margin-top: 0; }
+    .answer-key h3 { font-size: 11pt; margin: 16px 0 6px; }
+    .answer-key p, .answer-key li { font-size: 11pt; color: #333; line-height: 1.7; }
+    .answer-key ul { padding-left: 20px; margin-bottom: 10px; }
+
+    /* --- FOOTER --- */
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 12px;
+      border-top: 1px solid #ccc;
+      font-size: 9.5pt;
+      color: #888;
+      font-style: italic;
+    }
+
+    /* PRINT */
+    @media print {
+      body { padding: 1.2cm 1.8cm; }
+      .page-break { page-break-before: always; }
+      .dialogue-card { break-inside: avoid; }
+      h2 { break-after: avoid; }
+      .answer-key { page-break-before: always; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="module-header">
+  <p class="label">Vietnamien pour débutants · Tiếng Việt cho người mới học</p>
+  <h1>Module 3 : Relations entre personnes</h1>
+  <p>Les pronoms selon l'âge · Dialogues selon le rapport social · Quiz</p>
+</div>
+
+<!-- ===== INTRO ===== -->
+<div class="tip-box">
+  <strong>Principe fondamental</strong>
+  En vietnamien, il n'y a pas de pronom unique comme « je » ou « tu ». On choisit les pronoms
+  en fonction du <em>rapport d'âge et de statut</em> entre les deux interlocuteurs.
+  Ces pronoms viennent des termes de parenté et s'adaptent à chaque échange.
+  Apprendre à choisir le bon pronom est aussi important qu'apprendre le vocabulaire.
+</div>
+
+<!-- ===== SECTION 1 : TABLEAU DES PRONOMS ===== -->
+<h2>1. Tableau des pronoms relationnels</h2>
+<p>
+  Chaque paire définit comment deux personnes se parlent. La colonne <em>Je me présente comme</em>
+  indique ce que <strong>vous</strong> dites lorsque vous vous désignez vous-même.
+</p>
+
+<table class="pron-table">
+  <thead>
+    <tr>
+      <th>Situation</th>
+      <th>Vous vous adressez à eux avec</th>
+      <th>Vous parlez de vous-même avec</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong>Homme très âgé</strong> (≥ 60 ans)<br>
+        <span class="age-hint">ex. : un grand-père, un monsieur âgé</span>
+      </td>
+      <td class="viet">ông</td>
+      <td class="viet">cháu</td>
+      <td>Vous vous appelez « petit-enfant » (cháu) face à un ông.</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Femme très âgée</strong> (≥ 60 ans)<br>
+        <span class="age-hint">ex. : une grand-mère, une dame âgée</span>
+      </td>
+      <td class="viet">bà</td>
+      <td class="viet">cháu</td>
+      <td>Même logique que ông — vous restez cháu.</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Homme adulte plus vieux que soi</strong><br>
+        <span class="age-hint">ex. : un grand frère, un collègue aîné</span>
+      </td>
+      <td class="viet">anh</td>
+      <td class="viet">em</td>
+      <td>anh = frère aîné · em = cadet(te)</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Femme adulte plus vieille que soi</strong><br>
+        <span class="age-hint">ex. : une grande sœur, une collègue aînée</span>
+      </td>
+      <td class="viet">chị</td>
+      <td class="viet">em</td>
+      <td>chị = sœur aînée · em = cadet(te)</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Pairs (même âge, même groupe)</strong><br>
+        <span class="age-hint">ex. : amis d'école, collègues du même âge</span>
+      </td>
+      <td class="viet">bạn</td>
+      <td class="viet">tôi</td>
+      <td>bạn = ami · tôi = moi (neutre). Très courant entre étrangers.</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Personne plus jeune que soi</strong><br>
+        <span class="age-hint">ex. : un(e) cadet(te), un(e) étudiant(e) plus jeune</span>
+      </td>
+      <td class="viet">em</td>
+      <td class="viet">anh / chị</td>
+      <td>Vous devenez l'aîné(e) : anh si vous êtes un homme, chị si vous êtes une femme.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="tip-box">
+  <strong>Particule de respect : dạ &amp; ạ</strong>
+  Quand on parle à quelqu'un de plus âgé, on ajoute souvent <strong>dạ</strong> (oui, avec respect)
+  en début de réponse, et la particule <strong>ạ</strong> à la fin d'une phrase.
+  Ex. : « Dạ, em khỏe ạ. » → « Oui (respectueusement), je vais bien. »
+  Ces particules ne changent pas le sens, mais montrent de la déférence.
+</div>
+
+<!-- ===== SECTION 2 : DIALOGUES MODÈLES ===== -->
+<div class="page-break"></div>
+<h2>2. Dialogues modèles</h2>
+
+<!-- DIALOGUE A -->
+<div class="dialogue-card">
+  <div class="scenario-bar">Dialogue A — ông (70 ans) et cháu (20 ans) · Un monsieur âgé demande le prénom d'un jeune</div>
+  <div class="exchange">
+    <div class="block">
+      <div class="sub-label">En vietnamien</div>
+      <div class="line">
+        <span class="speaker">Ông :</span>
+        <span class="line-viet">Cháu tên là gì? <span class="pron">chow ten la zee</span></span>
+      </div>
+      <div class="line">
+        <span class="speaker">Cháu :</span>
+        <span class="line-viet">Dạ, tên cháu là Louis. Còn ông? <span class="pron">ya, ten chow la Louis. gon ong</span></span>
+      </div>
+      <div class="line">
+        <span class="speaker">Ông :</span>
+        <span class="line-viet">Ông tên là Minh. <span class="pron">ong ten la Minh</span></span>
+      </div>
+    </div>
+    <div class="block">
+      <div class="sub-label">Traduction naturelle</div>
+      <div class="line"><span class="speaker">Ông :</span><span class="line-fr">Comment t'appelles-tu ?</span></div>
+      <div class="line"><span class="speaker">Cháu :</span><span class="line-fr">Je m'appelle Louis. Et vous ?</span></div>
+      <div class="line"><span class="speaker">Ông :</span><span class="line-fr">Je m'appelle Minh.</span></div>
+    </div>
+    <div class="block">
+      <div class="sub-label">Littéral</div>
+      <div class="line"><span class="speaker">Ông :</span><span class="line-lit"><span class="lit-label">Litt. :</span>« Petit-enfant nom est quoi ? » — <em>cháu</em> = vous (plus jeune) · <em>tên</em> = nom · <em>gì</em> = quoi</span></div>
+      <div class="line"><span class="speaker">Cháu :</span><span class="line-lit"><span class="lit-label">Litt. :</span>« Dạ, nom petit-enfant est Louis. Encore monsieur-âgé ? » — <em>còn</em> = et/encore · le jeune utilise <em>cháu</em> pour parler de lui-même</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- DIALOGUE B -->
+<div class="dialogue-card">
+  <div class="scenario-bar">Dialogue B — anh (32 ans) et em (21 ans) · Un homme demande à une jeune femme d'où elle vient</div>
+  <div class="exchange">
+    <div class="block">
+      <div class="sub-label">En vietnamien</div>
+      <div class="line">
+        <span class="speaker">Anh :</span>
+        <span class="line-viet">Em đến từ đâu? <span class="pron">em den too dow</span></span>
+      </div>
+      <div class="line">
+        <span class="speaker">Em :</span>
+        <span class="line-viet">Dạ, em đến từ Canada. Còn anh? <span class="pron">ya, em den too Canada. gon anh</span></span>
+      </div>
+      <div class="line">
+        <span class="speaker">Anh :</span>
+        <span class="line-viet">Anh đến từ Hà Nội. <span class="pron">anh den too ha noy</span></span>
+      </div>
+    </div>
+    <div class="block">
+      <div class="sub-label">Traduction naturelle</div>
+      <div class="line"><span class="speaker">Anh :</span><span class="line-fr">Tu viens d'où ?</span></div>
+      <div class="line"><span class="speaker">Em :</span><span class="line-fr">Je viens du Canada. Et toi ?</span></div>
+      <div class="line"><span class="speaker">Anh :</span><span class="line-fr">Je viens de Hanoï.</span></div>
+    </div>
+    <div class="block">
+      <div class="sub-label">Littéral</div>
+      <div class="line"><span class="speaker">Anh :</span><span class="line-lit"><span class="lit-label">Litt. :</span>« Cadet(te) venir depuis où ? » — <em>đến từ</em> = venir de · <em>đâu</em> = où</span></div>
+      <div class="line"><span class="speaker">Em :</span><span class="line-lit"><span class="lit-label">Litt. :</span>Notez : em utilise <em>anh</em> pour dire « toi » à l'homme plus âgé, et se désigne lui-même comme <em>em</em>.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- DIALOGUE C -->
+<div class="dialogue-card">
+  <div class="scenario-bar">Dialogue C — chị (28 ans) et em (18 ans) · Une jeune femme demande l'âge d'un adolescent</div>
+  <div class="exchange">
+    <div class="block">
+      <div class="sub-label">En vietnamien</div>
+      <div class="line">
+        <span class="speaker">Chị :</span>
+        <span class="line-viet">Em bao nhiêu tuổi? <span class="pron">em bow nyew too-ee</span></span>
+      </div>
+      <div class="line">
+        <span class="speaker">Em :</span>
+        <span class="line-viet">Dạ, em mười tám tuổi ạ. <span class="pron">ya, em muh-ee tam too-ee a</span></span>
+      </div>
+      <div class="line">
+        <span class="speaker">Chị :</span>
+        <span class="line-viet">Ồ, em còn nhỏ quá! <span class="pron">oh, em gon nyo kwah</span></span>
+      </div>
+    </div>
+    <div class="block">
+      <div class="sub-label">Traduction naturelle</div>
+      <div class="line"><span class="speaker">Chị :</span><span class="line-fr">Tu as quel âge ?</span></div>
+      <div class="line"><span class="speaker">Em :</span><span class="line-fr">J'ai dix-huit ans. (avec déférence)</span></div>
+      <div class="line"><span class="speaker">Chị :</span><span class="line-fr">Oh, tu es encore jeune !</span></div>
+    </div>
+    <div class="block">
+      <div class="sub-label">Littéral</div>
+      <div class="line"><span class="speaker">Em :</span><span class="line-lit"><span class="lit-label">Litt. :</span>« Dạ, moi dix-huit âge (particule respect). » — <em>mười tám</em> = dix-huit · <em>ạ</em> = marque de déférence en fin de phrase</span></div>
+      <div class="line"><span class="speaker">Chị :</span><span class="line-lit"><span class="lit-label">Litt. :</span>« Ô, cadet(te) encore petit trop ! » — <em>còn nhỏ</em> = encore petit(e) · <em>quá</em> = trop/vraiment</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- DIALOGUE D -->
+<div class="dialogue-card">
+  <div class="scenario-bar">Dialogue D — bạn ↔ bạn (22 ans / 22 ans) · Deux amis se présentent pour la première fois</div>
+  <div class="exchange">
+    <div class="block">
+      <div class="sub-label">En vietnamien</div>
+      <div class="line">
+        <span class="speaker">Bạn 1 :</span>
+        <span class="line-viet">Bạn tên là gì? <span class="pron">ban ten la zee</span></span>
+      </div>
+      <div class="line">
+        <span class="speaker">Bạn 2 :</span>
+        <span class="line-viet">Tôi tên là Marie. Còn bạn? <span class="pron">toy ten la Marie. gon ban</span></span>
+      </div>
+      <div class="line">
+        <span class="speaker">Bạn 1 :</span>
+        <span class="line-viet">Tôi tên là Louis. Rất vui được gặp bạn! <span class="pron">toy ten la Louis. rut voo-ee duh-uk gap ban</span></span>
+      </div>
+    </div>
+    <div class="block">
+      <div class="sub-label">Traduction naturelle</div>
+      <div class="line"><span class="speaker">Bạn 1 :</span><span class="line-fr">Comment tu t'appelles ?</span></div>
+      <div class="line"><span class="speaker">Bạn 2 :</span><span class="line-fr">Je m'appelle Marie. Et toi ?</span></div>
+      <div class="line"><span class="speaker">Bạn 1 :</span><span class="line-fr">Je m'appelle Louis. Ravi(e) de te rencontrer !</span></div>
+    </div>
+    <div class="block">
+      <div class="sub-label">Littéral</div>
+      <div class="line"><span class="speaker">Bạn 2 :</span><span class="line-lit"><span class="lit-label">Litt. :</span>« Moi nom est Marie. Encore ami ? » — entre pairs, on utilise <em>tôi</em> pour soi-même et <em>bạn</em> pour l'autre.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- DIALOGUE E -->
+<div class="dialogue-card">
+  <div class="scenario-bar">Dialogue E — bà (65 ans) et cháu (15 ans) · Une grand-mère demande si l'enfant a mangé</div>
+  <div class="exchange">
+    <div class="block">
+      <div class="sub-label">En vietnamien</div>
+      <div class="line">
+        <span class="speaker">Bà :</span>
+        <span class="line-viet">Cháu ăn cơm chưa? <span class="pron">chow an gum chuh-a</span></span>
+      </div>
+      <div class="line">
+        <span class="speaker">Cháu :</span>
+        <span class="line-viet">Dạ, cháu ăn rồi ạ. Cảm ơn bà! <span class="pron">ya, chow an zoy a. gam un ba</span></span>
+      </div>
+      <div class="line">
+        <span class="speaker">Bà :</span>
+        <span class="line-viet">Tốt. Bà thương cháu lắm. <span class="pron">tot. ba tuh-ung chow lam</span></span>
+      </div>
+    </div>
+    <div class="block">
+      <div class="sub-label">Traduction naturelle</div>
+      <div class="line"><span class="speaker">Bà :</span><span class="line-fr">Est-ce que tu as mangé ?</span></div>
+      <div class="line"><span class="speaker">Cháu :</span><span class="line-fr">Oui, j'ai mangé, merci grand-mère !</span></div>
+      <div class="line"><span class="speaker">Bà :</span><span class="line-fr">Bien. Je t'aime beaucoup.</span></div>
+    </div>
+    <div class="block">
+      <div class="sub-label">Littéral</div>
+      <div class="line"><span class="speaker">Bà :</span><span class="line-lit"><span class="lit-label">Litt. :</span>« Petit-enfant manger riz encore-pas ? » — <em>ăn cơm</em> = manger (litt. : manger riz) · <em>chưa</em> = encore pas / question sur état accompli</span></div>
+      <div class="line"><span class="speaker">Bà :</span><span class="line-lit"><span class="lit-label">Litt. :</span>« Grand-mère chérir petit-enfant beaucoup. » — <em>thương</em> = chérir/aimer (affection familiale) · <em>lắm</em> = beaucoup</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== EXERCISES ===== -->
+<div class="page-break"></div>
+<h2 class="exo">Exercices</h2>
+
+<!-- EXERCISE 1 -->
+<div class="exercise">
+  <p class="exercise-title">Exercice 1 — Identifier la relation</p>
+  <p class="exercise-instr">
+    Lisez chaque échange et cochez la case qui décrit le mieux la relation entre les deux personnes.
+  </p>
+
+  <ul class="tf-list">
+    <li>
+      <p style="margin-bottom:8px; font-size:12.5pt;">
+        <strong>A.</strong>&nbsp;
+        — <em>Cháu có khỏe không?</em> &nbsp;/&nbsp; — <em>Dạ, cháu khỏe ạ. Cảm ơn ông.</em>
+      </p>
+      <div style="display:flex; gap:30px; font-size:11pt;">
+        <label><span class="tf-box"></span> Deux amis du même âge</label>
+        <label><span class="tf-box"></span> Un homme âgé et un(e) plus jeune</label>
+        <label><span class="tf-box"></span> Une grande sœur et son cadet</label>
+      </div>
+    </li>
+    <li>
+      <p style="margin-bottom:8px; font-size:12.5pt;">
+        <strong>B.</strong>&nbsp;
+        — <em>Bạn làm nghề gì?</em> &nbsp;/&nbsp; — <em>Tôi là giáo viên. Còn bạn?</em>
+      </p>
+      <div style="display:flex; gap:30px; font-size:11pt;">
+        <label><span class="tf-box"></span> Deux amis du même âge</label>
+        <label><span class="tf-box"></span> Un homme et une femme plus jeune</label>
+        <label><span class="tf-box"></span> Une grand-mère et son petit-enfant</label>
+      </div>
+    </li>
+    <li>
+      <p style="margin-bottom:8px; font-size:12.5pt;">
+        <strong>C.</strong>&nbsp;
+        — <em>Em tên là gì?</em> &nbsp;/&nbsp; — <em>Dạ, tên em là Linh. Còn chị?</em>
+      </p>
+      <div style="display:flex; gap:30px; font-size:11pt;">
+        <label><span class="tf-box"></span> Deux amis du même âge</label>
+        <label><span class="tf-box"></span> Une femme plus âgée et une plus jeune</label>
+        <label><span class="tf-box"></span> Un homme âgé et un jeune homme</label>
+      </div>
+    </li>
+    <li>
+      <p style="margin-bottom:8px; font-size:12.5pt;">
+        <strong>D.</strong>&nbsp;
+        — <em>Cháu ăn cơm chưa?</em> &nbsp;/&nbsp; — <em>Dạ, cháu ăn rồi ạ. Cảm ơn bà.</em>
+      </p>
+      <div style="display:flex; gap:30px; font-size:11pt;">
+        <label><span class="tf-box"></span> Une femme âgée et un(e) plus jeune</label>
+        <label><span class="tf-box"></span> Un frère et une sœur du même âge</label>
+        <label><span class="tf-box"></span> Deux collègues</label>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- EXERCISE 2 -->
+<div class="exercise">
+  <p class="exercise-title">Exercice 2 — Complète avec le bon pronom</p>
+  <p class="exercise-instr">
+    Complète chaque dialogue avec le pronom correct. Utilise la banque de mots ci-dessous.
+    <strong>Attention :</strong> chaque token peut être utilisé plus d'une fois.
+  </p>
+
+  <div class="word-bank">
+    <span class="wb-label">Banque de mots</span>
+    <span class="word-token">ông</span>
+    <span class="word-token">bà</span>
+    <span class="word-token">anh</span>
+    <span class="word-token">chị</span>
+    <span class="word-token">em</span>
+    <span class="word-token">cháu</span>
+    <span class="word-token">bạn</span>
+    <span class="word-token">tôi</span>
+  </div>
+
+  <ul class="fill-list">
+    <li>
+      <span class="num">1.</span>
+      Un homme de 35 ans (Hùng) parle à une femme de 22 ans (Lan) :<br>
+      — Hùng : « <span class="blank"></span> tên là gì ? »<br>
+      — Lan : « Dạ, tên <span class="blank"></span> là Lan. Cảm ơn <span class="blank"></span>. »
+    </li>
+    <li>
+      <span class="num">2.</span>
+      Deux étudiants du même âge se rencontrent :<br>
+      — Étudiant A : « <span class="blank"></span> đến từ đâu ? »<br>
+      — Étudiant B : « <span class="blank"></span> đến từ Huế. Còn <span class="blank"></span> ? »
+    </li>
+    <li>
+      <span class="num">3.</span>
+      Une dame de 68 ans parle à un enfant de 10 ans :<br>
+      — Dame : « <span class="blank"></span> bao nhiêu tuổi ? »<br>
+      — Enfant : « Dạ, <span class="blank"></span> mười tuổi ạ. Cảm ơn <span class="blank"></span>. »
+    </li>
+    <li>
+      <span class="num">4.</span>
+      Une femme de 30 ans (chị Mai) demande à un jeune homme de 19 ans s'il parle français :<br>
+      — Chị Mai : « <span class="blank"></span> có nói tiếng Pháp không ? »<br>
+      — Jeune homme : « Dạ, <span class="blank"></span> nói được một ít ạ. »
+    </li>
+    <li>
+      <span class="num">5.</span>
+      Un homme de 70 ans demande à un jeune homme d'où il vient :<br>
+      — Homme âgé : « <span class="blank"></span> đến từ đâu ? »<br>
+      — Jeune homme : « Dạ, <span class="blank"></span> đến từ Canada. Còn <span class="blank"></span> ? »
+    </li>
+  </ul>
+</div>
+
+<!-- EXERCISE 3 -->
+<div class="page-break"></div>
+<div class="exercise">
+  <p class="exercise-title">Exercice 3 — Vrai ou faux ? Corrige si nécessaire</p>
+  <p class="exercise-instr">
+    Chaque phrase est-elle correcte selon la relation indiquée ? Coche ✓ ou ✗, puis réécris la phrase
+    correctement si elle est fausse.
+  </p>
+
+  <ul class="tf-list">
+    <li>
+      <div class="tf-row">
+        <strong>1.</strong>
+        <div>
+          Contexte : une jeune femme de 20 ans parle à un homme de 55 ans.<br>
+          Elle dit : <em style="font-size:13pt">« Bạn có khỏe không ? »</em>
+        </div>
+      </div>
+      <div style="display:flex; gap:30px; font-size:11pt; margin: 6px 0 0 28px;">
+        <label><span class="tf-box"></span> ✓ Correct</label>
+        <label><span class="tf-box"></span> ✗ Incorrect</label>
+      </div>
+      <div class="correction-line">Correction : <span class="blank-lg"></span></div>
+    </li>
+    <li>
+      <div class="tf-row">
+        <strong>2.</strong>
+        <div>
+          Contexte : un homme de 30 ans parle d'une jeune femme de 22 ans à une tierce personne.<br>
+          Il dit : <em style="font-size:13pt">« Em ấy rất giỏi. »</em> (Elle est très douée.)
+        </div>
+      </div>
+      <div style="display:flex; gap:30px; font-size:11pt; margin: 6px 0 0 28px;">
+        <label><span class="tf-box"></span> ✓ Correct</label>
+        <label><span class="tf-box"></span> ✗ Incorrect</label>
+      </div>
+      <div class="correction-line">Correction si nécessaire : <span class="blank-lg"></span></div>
+    </li>
+    <li>
+      <div class="tf-row">
+        <strong>3.</strong>
+        <div>
+          Contexte : un garçon de 14 ans répond à sa grand-mère (65 ans) qui lui demande s'il a mangé.<br>
+          Il dit : <em style="font-size:13pt">« Dạ, bạn ăn rồi ạ. »</em>
+        </div>
+      </div>
+      <div style="display:flex; gap:30px; font-size:11pt; margin: 6px 0 0 28px;">
+        <label><span class="tf-box"></span> ✓ Correct</label>
+        <label><span class="tf-box"></span> ✗ Incorrect</label>
+      </div>
+      <div class="correction-line">Correction : <span class="blank-lg"></span></div>
+    </li>
+    <li>
+      <div class="tf-row">
+        <strong>4.</strong>
+        <div>
+          Contexte : deux amis du même âge se saluent.<br>
+          L'un dit : <em style="font-size:13pt">« Bạn khỏe không ? »</em>
+        </div>
+      </div>
+      <div style="display:flex; gap:30px; font-size:11pt; margin: 6px 0 0 28px;">
+        <label><span class="tf-box"></span> ✓ Correct</label>
+        <label><span class="tf-box"></span> ✗ Incorrect</label>
+      </div>
+      <div class="correction-line">Correction si nécessaire : <span class="blank-lg"></span></div>
+    </li>
+    <li>
+      <div class="tf-row">
+        <strong>5.</strong>
+        <div>
+          Contexte : une femme de 28 ans (chị) s'adresse à un jeune homme de 18 ans pour lui demander son prénom.<br>
+          Elle dit : <em style="font-size:13pt">« Anh tên là gì ? »</em>
+        </div>
+      </div>
+      <div style="display:flex; gap:30px; font-size:11pt; margin: 6px 0 0 28px;">
+        <label><span class="tf-box"></span> ✓ Correct</label>
+        <label><span class="tf-box"></span> ✗ Incorrect</label>
+      </div>
+      <div class="correction-line">Correction : <span class="blank-lg"></span></div>
+    </li>
+  </ul>
+</div>
+
+<!-- EXERCISE 4 -->
+<div class="exercise">
+  <p class="exercise-title">Exercice 4 — Associer la situation à la bonne phrase</p>
+  <p class="exercise-instr">
+    Relie chaque situation (colonne de gauche) à la phrase vietnamienne qui convient (colonne de droite).
+    Écris la lettre correspondante dans la case.
+  </p>
+
+  <div class="match-grid">
+    <div class="match-col">
+      <h4>Situation</h4>
+      <div class="match-item">
+        <span class="num">1.</span>
+        <span style="flex:1">Un homme de 40 ans demande son âge à un garçon de 15 ans.</span>
+        <span class="blank-short"></span>
+      </div>
+      <div class="match-item">
+        <span class="num">2.</span>
+        <span style="flex:1">Deux collègues du même âge se demandent comment ils vont.</span>
+        <span class="blank-short"></span>
+      </div>
+      <div class="match-item">
+        <span class="num">3.</span>
+        <span style="flex:1">Une grand-mère (72 ans) dit à sa petite-fille qu'elle l'aime.</span>
+        <span class="blank-short"></span>
+      </div>
+      <div class="match-item">
+        <span class="num">4.</span>
+        <span style="flex:1">Une jeune femme (25 ans) remercie un homme plus âgé (45 ans).</span>
+        <span class="blank-short"></span>
+      </div>
+      <div class="match-item">
+        <span class="num">5.</span>
+        <span style="flex:1">Un garçon de 19 ans demande à sa grande sœur (26 ans) si elle veut manger.</span>
+        <span class="blank-short"></span>
+      </div>
+    </div>
+    <div class="match-col">
+      <h4>Phrase vietnamienne</h4>
+      <div class="match-item"><span class="num">A.</span><span style="flex:1; font-size:13pt; font-weight:bold;">Bạn khỏe không?</span></div>
+      <div class="match-item"><span class="num">B.</span><span style="flex:1; font-size:13pt; font-weight:bold;">Bà thương cháu lắm.</span></div>
+      <div class="match-item"><span class="num">C.</span><span style="flex:1; font-size:13pt; font-weight:bold;">Chị có muốn ăn không?</span></div>
+      <div class="match-item"><span class="num">D.</span><span style="flex:1; font-size:13pt; font-weight:bold;">Em bao nhiêu tuổi?</span></div>
+      <div class="match-item"><span class="num">E.</span><span style="flex:1; font-size:13pt; font-weight:bold;">Dạ, em cảm ơn anh nhiều ạ.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EXERCISE 5 -->
+<div class="page-break"></div>
+<div class="exercise">
+  <p class="exercise-title">Exercice 5 — Écrire la réponse</p>
+  <p class="exercise-instr">
+    Pour chaque question, écris une réponse complète en vietnamien. Utilise les bons pronoms selon
+    le contexte indiqué. La première ligne est pour le vietnamien, la deuxième pour la traduction.
+  </p>
+
+  <ul class="write-list">
+    <li>
+      <p class="write-prompt">Ông hỏi : « Cháu tên là gì ? »  <span class="pron">ong hoy : « chow ten la zee »</span></p>
+      <p class="write-context">Contexte : Un monsieur de 68 ans vous demande votre prénom. Vous vous appelez [votre prénom].</p>
+      <div class="write-line"></div>
+      <div class="write-line"></div>
+    </li>
+    <li>
+      <p class="write-prompt">Chị hỏi : « Em đang học ở đâu ? »  <span class="pron">chee hoy : « em dang hok uh dow »</span></p>
+      <p class="write-context">Contexte : Une femme de 30 ans vous demande où vous étudiez. Vous étudiez à Montréal.</p>
+      <div class="write-line"></div>
+      <div class="write-line"></div>
+    </li>
+    <li>
+      <p class="write-prompt">Bạn hỏi : « Bạn có nói tiếng Pháp không ? »  <span class="pron">ban hoy : « ban goh noy tyeng fap khome »</span></p>
+      <p class="write-context">Contexte : Un(e) ami(e) du même âge vous demande si vous parlez français. Vous parlez un peu français.</p>
+      <div class="write-line"></div>
+      <div class="write-line"></div>
+    </li>
+    <li>
+      <p class="write-prompt">Anh hỏi : « Em có khỏe không ? »  <span class="pron">anh hoy : « em goh khweh khome »</span></p>
+      <p class="write-context">Contexte : Un homme plus âgé vous demande si vous allez bien. Vous allez bien.</p>
+      <div class="write-line"></div>
+      <div class="write-line"></div>
+    </li>
+    <li>
+      <p class="write-prompt">Bà hỏi : « Cháu ăn cơm chưa ? »  <span class="pron">ba hoy : « chow an gum chuh-a »</span></p>
+      <p class="write-context">Contexte : Une dame âgée vous demande si vous avez mangé. Vous avez déjà mangé.</p>
+      <div class="write-line"></div>
+      <div class="write-line"></div>
+    </li>
+  </ul>
+</div>
+
+<!-- ===== ANSWER KEY ===== -->
+<div class="answer-key">
+  <h2>Corrigé</h2>
+
+  <h3>Exercice 1 — Identifier la relation</h3>
+  <ul>
+    <li><strong>A.</strong> → <em>Un homme âgé et un(e) plus jeune</em> — ông pose la question · cháu répond avec déférence (dạ, ạ).</li>
+    <li><strong>B.</strong> → <em>Deux amis du même âge</em> — bạn/tôi sont les marqueurs de rapport entre pairs.</li>
+    <li><strong>C.</strong> → <em>Une femme plus âgée et une plus jeune</em> — chị est adressée via « còn chị ? » · em se désigne em.</li>
+    <li><strong>D.</strong> → <em>Une femme âgée et un(e) plus jeune</em> — bà pose la question · cháu répond avec dạ et ạ.</li>
+  </ul>
+
+  <h3>Exercice 2 — Complète avec le bon pronom</h3>
+  <ul>
+    <li><strong>1.</strong> « <strong>Em</strong> tên là gì ? » / « Dạ, tên <strong>em</strong> là Lan. Cảm ơn <strong>anh</strong>. »</li>
+    <li><strong>2.</strong> « <strong>Bạn</strong> đến từ đâu ? » / « <strong>Tôi</strong> đến từ Huế. Còn <strong>bạn</strong> ? »</li>
+    <li><strong>3.</strong> « <strong>Cháu</strong> bao nhiêu tuổi ? » / « Dạ, <strong>cháu</strong> mười tuổi ạ. Cảm ơn <strong>bà</strong>. »</li>
+    <li><strong>4.</strong> « <strong>Em</strong> có nói tiếng Pháp không ? » / « Dạ, <strong>em</strong> nói được một ít ạ. »</li>
+    <li><strong>5.</strong> « <strong>Cháu</strong> đến từ đâu ? » / « Dạ, <strong>cháu</strong> đến từ Canada. Còn <strong>ông</strong> ? »</li>
+  </ul>
+
+  <h3>Exercice 3 — Vrai ou faux ?</h3>
+  <ul>
+    <li><strong>1.</strong> ✗ Incorrect — une jeune personne doit dire <strong>anh</strong> (pas bạn) à un homme de 55 ans. Correction : « Anh có khỏe không ? »</li>
+    <li><strong>2.</strong> ✓ Correct — un homme plus âgé peut appeler une femme plus jeune « em ấy » (elle, la cadette).</li>
+    <li><strong>3.</strong> ✗ Incorrect — face à sa grand-mère, le garçon se désigne comme <strong>cháu</strong> (pas bạn). Correction : « Dạ, <strong>cháu</strong> ăn rồi ạ. »</li>
+    <li><strong>4.</strong> ✓ Correct — entre pairs, bạn/bạn est la paire correcte.</li>
+    <li><strong>5.</strong> ✗ Incorrect — une chị s'adresse à un garçon plus jeune avec <strong>em</strong>, pas anh. Correction : « <strong>Em</strong> tên là gì ? »</li>
+  </ul>
+
+  <h3>Exercice 4 — Associer</h3>
+  <p>1 — D &nbsp;·&nbsp; 2 — A &nbsp;·&nbsp; 3 — B &nbsp;·&nbsp; 4 — E &nbsp;·&nbsp; 5 — C</p>
+
+  <h3>Exercice 5 — Réponses modèles</h3>
+  <ul>
+    <li><strong>1.</strong> « Dạ, tên cháu là [prénom] ạ. » → « Oui, je m'appelle [prénom]. »</li>
+    <li><strong>2.</strong> « Dạ, em đang học ở Montréal ạ. » → « Oui, j'étudie à Montréal. »</li>
+    <li><strong>3.</strong> « Có, tôi nói được một ít tiếng Pháp. » → « Oui, je parle un peu français. » (ou : « Tôi nói tiếng Pháp không nhiều. »)</li>
+    <li><strong>4.</strong> « Dạ, em khỏe ạ. Cảm ơn anh. » → « Oui, je vais bien. Merci. »</li>
+    <li><strong>5.</strong> « Dạ, cháu ăn rồi ạ. Cảm ơn bà. » → « Oui, j'ai déjà mangé. Merci grand-mère. »</li>
+  </ul>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  Module 3 · Vietnamien pour débutants &nbsp;·&nbsp; Relations et pronoms &nbsp;·&nbsp; Version imprimable
+</div>
+
+</body>
+</html>
